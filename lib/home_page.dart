@@ -98,7 +98,7 @@ class HomePage extends StatelessWidget {
               context: context,
               title: 'About Me',
               child: Text(
-                'Hello! I\'m Aaryn, a Canadian with a love for both coding and adventure. As a Software Engineer, I\'ve had the opportunity to work on exciting projects in diverse locations, including Berlin and Toronto, building everything from mobile apps to complex SaaS platforms. My tech stack includes a wide range of technologies, from JavaScript and React to Ruby on Rails and Flutter. Beyond the keyboard, I\'m an avid runner, traveler, and skier, always eager to discover new places and meet new people. I\'m excited to connect with the iamexpat community to share stories and learn from others\' experiences!',
+                'Hello! I\'m Aaryn, a Canadian with a love for both coding and adventure. As a Software Engineer, I\'ve had the opportunity to work on exciting projects in diverse locations, including Berlin and Toronto, building everything from mobile apps to complex SaaS platforms. My tech stack includes a wide range of technologies, from JavaScript and React to Ruby on Rails and Flutter. Beyond the keyboard, I\'m an avid runner, traveler, and skier, always eager to discover new places and meet new people. I\'m excited to connect with the online community to share stories and learn from others\' experiences!',
                 style: textTheme.bodyLarge,
               ),
               backgroundColor: colorScheme.surface, // Use theme surface color
