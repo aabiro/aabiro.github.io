@@ -1,9 +1,17 @@
 import 'package:aabiro_github_io/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:github_pages/github_pages.dart' as ghpages;
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+Future<void> main() async {
   ghpages.publish('build/web', {});
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // 5. Initialize Firebase **HERE**
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(MyApp());
 }
 
