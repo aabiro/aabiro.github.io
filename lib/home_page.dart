@@ -315,8 +315,8 @@ class HomePage extends StatelessWidget {
         'description':
             'Developed a peer-to-peer bicycle rental mobile app (iOS/Android) using Flutter/Dart. The platform allows users to easily find and rent bikes for city transport or lend their own for extra income.',
         'imageUrl':
-            'https://raw.githubusercontent.com/aabiro/crypto_bank_mobile/refs/heads/master/assets/gnglogo.png', // Placeholder
-        'githubUrl': 'https://github.com/aabiro/crypto_bank_mobile',
+            'https://raw.githubusercontent.com/aabiro/GivnGo/refs/heads/master/assets/gnglogo.png', // Placeholder
+        'githubUrl': 'https://github.com/aabiro/GivnGo',
         'liveUrl': null, // Optional live demo URL
       },
       {
@@ -326,7 +326,7 @@ class HomePage extends StatelessWidget {
         'imageUrl': 'https://i.imgur.com/z68LtyT.png',
         'githubUrl':
             'https://github.com/aabiro/flutter_countdown_timer?tab=readme-ov-file#countdown_pal_app',
-        'liveUrl': 'https://your-dashboard-live-url.com',
+        // 'liveUrl': 'https://your-dashboard-live-url.com',
       },
       {
         'title': 'Recipe Finder Application',
