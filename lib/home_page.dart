@@ -397,7 +397,7 @@ class HomePage extends StatelessWidget {
                     Text(
                       project['description']!,
                       style: textTheme.bodyMedium,
-                      maxLines: 3, // Limit description lines
+                      maxLines: 4, // Limit description lines
                       overflow: TextOverflow.ellipsis,
                     ),
                     const SizedBox(height: 15),
