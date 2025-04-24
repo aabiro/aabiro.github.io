@@ -8,7 +8,6 @@ class HomePage extends StatelessWidget {
   Future<void> _launchURL(String url) async {
     final Uri uri = Uri.parse(url);
     if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
-      // Log or show an error message if the URL can't be launched
       print('Could not launch $url');
       // Consider showing a SnackBar or Dialog to the user
     }
@@ -26,68 +25,118 @@ class HomePage extends StatelessWidget {
     }
   }
 
+  // Helper function to get chip color based on skill text
+  Color _getChipColor(String skill, ColorScheme colorScheme) {
+    // Simple categorization based on keywords
+    final lowerSkill = skill.toLowerCase();
+    // Using slightly less saturated colors for a softer look
+    if (lowerSkill.contains('flutter') || lowerSkill.contains('dart')) {
+      return Colors.blue[100] ?? colorScheme.primaryContainer; // Mobile
+    } else if (lowerSkill.contains('react') ||
+        lowerSkill.contains('javascript') ||
+        lowerSkill.contains('html') ||
+        lowerSkill.contains('css')) {
+      return Colors.teal[100] ?? colorScheme.secondaryContainer; // Frontend
+    } else if (lowerSkill.contains('node.js') ||
+        lowerSkill.contains('ruby') ||
+        lowerSkill.contains('rails') ||
+        lowerSkill.contains('sql') ||
+        lowerSkill.contains('mongo') ||
+        lowerSkill.contains('rest')) {
+      return Colors.amber[200] ?? colorScheme.tertiaryContainer; // Backend
+    } else if (lowerSkill.contains('aws') ||
+        lowerSkill.contains('docker') ||
+        lowerSkill.contains('git') ||
+        lowerSkill.contains('ci/cd')) {
+      return Colors.deepPurple[100] ?? Colors.indigo[100]!; // DevOps/Tools
+    } else {
+      return Colors.grey[300] ?? colorScheme.surfaceVariant; // Concepts/Other
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
     final textTheme = Theme.of(context).textTheme;
     final colorScheme = Theme.of(context).colorScheme;
 
-    // Define consistent horizontal padding based on screen size (basic responsiveness)
-    final horizontalPadding = screenSize.width > 800 ? 80.0 : 30.0;
+    // Define consistent horizontal padding based on screen size
+    final horizontalPadding = screenSize.width > 900
+        ? screenSize.width * 0.1
+        : 30.0; // Use percentage for larger screens
     const String profileImagePath =
         'assets/headshot.JPG'; // Ensure this path is correct in pubspec.yaml
 
     return Scaffold(
+      // Use a slightly off-white background for the main body
+      backgroundColor: colorScheme.surfaceContainerLowest,
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             // --- 1. Hero/Header Section ---
             Container(
-              height: screenSize.height * 0.6, // Slightly taller header
+              // Slightly reduced height for better balance on smaller screens
+              height: screenSize.height * 0.55 < 400
+                  ? 400
+                  : screenSize.height * 0.55,
               padding: EdgeInsets.symmetric(
-                  horizontal: horizontalPadding, vertical: 40.0),
-              // Apply a gradient background
+                  horizontal: horizontalPadding, vertical: 50.0),
               decoration: BoxDecoration(
+                // More subtle gradient using theme colors
                 gradient: LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [
-                    colorScheme.primary, // Teal
-                    colorScheme
-                        .secondary, // Default secondary, adjust if needed
+                    colorScheme.primary.withOpacity(0.9),
+                    colorScheme.secondary.withOpacity(0.8),
                   ],
                 ),
+                // Optional: Add a subtle bottom curve or shape
+                // borderRadius: const BorderRadius.vertical(bottom: Radius.elliptical(150, 30)),
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  // Add a subtle shadow/border to the avatar
                   CircleAvatar(
-                    radius: 60,
-                    backgroundColor:
-                        Colors.white.withOpacity(0.8), // Fallback background
-                    // Use backgroundImage for the asset image
-                    backgroundImage: const AssetImage(
-                        profileImagePath), // Load image from assets
-                    onBackgroundImageError: (exception, stackTrace) {
-                      // Handle image loading errors, e.g., log or show placeholder
-                      print('Error loading profile image: $exception');
-                    },
-                    // Use child for the placeholder icon ONLY if backgroundImage fails (handled by onBackgroundImageError potentially)
-                    // child: Icon(Icons.person, size: 60, color: colorScheme.primary),
+                    radius: 65, // Slightly larger
+                    backgroundColor: colorScheme
+                        .surface, // Use surface color for border effect
+                    child: CircleAvatar(
+                      radius: 60,
+                      backgroundColor: Colors.grey[300], // Fallback background
+                      backgroundImage: const AssetImage(profileImagePath),
+                      onBackgroundImageError: (exception, stackTrace) {
+                        print('Error loading profile image: $exception');
+                      },
+                    ),
                   ),
                   const SizedBox(height: 25),
                   Text(
                     'Aaryn Biro',
-                    style:
-                        textTheme.displayLarge?.copyWith(color: Colors.white),
+                    // Use headlineLarge for more impact, adjust size if needed
+                    style: textTheme.headlineLarge?.copyWith(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold, // Bolder name
+                        shadows: [
+                          // Add subtle text shadow for readability
+                          Shadow(
+                            blurRadius: 4.0,
+                            color: Colors.black.withOpacity(0.3),
+                            offset: const Offset(1.0, 1.0),
+                          ),
+                        ]),
                     textAlign: TextAlign.center,
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 12),
                   Text(
-                    'Software Developer / Flutter Developer | Web Enthusiast',
-                    style: textTheme.titleLarge
-                        ?.copyWith(color: Colors.white.withOpacity(0.9)),
+                    'Software Developer | Flutter Enthusiast | Web Creator', // Slightly refined title
+                    style: textTheme.titleMedium?.copyWith(
+                      // Slightly smaller subtitle
+                      color: Colors.white.withOpacity(0.9),
+                      letterSpacing: 0.5, // Add subtle letter spacing
+                    ),
                     textAlign: TextAlign.center,
                   ),
                 ],
@@ -100,9 +149,11 @@ class HomePage extends StatelessWidget {
               title: 'About Me',
               child: Text(
                 'Hello! I\'m Aaryn, a Canadian with a love for both coding and adventure. As a Software Engineer, I\'ve had the opportunity to work on exciting projects in diverse locations, including Berlin and Toronto, building everything from mobile apps to complex SaaS platforms. My tech stack includes a wide range of technologies, from JavaScript and React to Ruby on Rails and Flutter. Beyond the keyboard, I\'m an avid runner, traveler, and skier, always eager to discover new places and meet new people. I\'m excited to connect with the online community to share stories and learn from others\' experiences!',
-                style: textTheme.bodyLarge,
+                // Increased line height for better readability
+                style: textTheme.bodyLarge?.copyWith(height: 1.6),
               ),
-              backgroundColor: colorScheme.surface, // Use theme surface color
+              // Use alternating background colors for sections
+              backgroundColor: colorScheme.surfaceContainerLowest,
               horizontalPadding: horizontalPadding,
             ),
 
@@ -110,10 +161,12 @@ class HomePage extends StatelessWidget {
             _buildSection(
               context: context,
               title: 'Projects',
-              child: _buildProjectsGrid(
-                  context), // Use a helper for project layout
-              backgroundColor: colorScheme.surfaceContainerHighest
-                  .withOpacity(0.3), // Slightly different background
+              // --- FIX: Pass horizontalPadding to _buildProjectsGrid ---
+              child: _buildProjectsGrid(context,
+                  horizontalPadding: horizontalPadding),
+              // --- END FIX ---
+              // Use alternating background colors
+              backgroundColor: colorScheme.surfaceContainerLow,
               horizontalPadding: horizontalPadding,
             ),
 
@@ -121,136 +174,130 @@ class HomePage extends StatelessWidget {
             _buildSection(
               context: context,
               title: 'Skills',
-              child: const Wrap(
-                spacing: 12.0, // Increased spacing
-                runSpacing: 12.0,
-                children: <Widget>[
-                  //Mobile development (Flutter), Full Stack web development (Node.js, Mongo, Express, Angular, React), AWS, SQL, HTML, CSS, JavaScript, AJAX, Git, Docker, CI/CD, TDD, BDD, Building RESTful API's
-                  // Use the themed Chip
-                  Chip(label: Text('Mobile development (Flutter)')),
-                  Chip(label: Text('Full Stack web development')),
-                  Chip(label: Text('Node.js')),
-                  Chip(label: Text('Mongo')),
-                  Chip(label: Text('React')),
-                  Chip(label: Text('Ruby on Rails')),
-                  Chip(label: Text('JavaScript')),
-                  Chip(label: Text('HTML')),
-                  Chip(label: Text('CSS')),
-                  Chip(label: Text('AWS')),
-                  Chip(label: Text('SQL')),
-                  Chip(label: Text('Docker')),
-                  Chip(label: Text('Firebase')),
-                  Chip(label: Text('Git')),
-                  Chip(label: Text('REST APIs')),
-                  Chip(label: Text('UI/UX (Basics)')),
-                  Chip(label: Text('Responsive Design')),
-                  Chip(label: Text('CI/CD')),
-                  Chip(label: Text('TDD')),
-                  Chip(label: Text('BDD')),
-                  Chip(label: Text('Ruby')),
-                  Chip(label: Text('Dart')),
-                  // Add more skills
-                ],
-              ),
-              backgroundColor: colorScheme.surface,
+              child: Builder(builder: (context) {
+                final colorScheme = Theme.of(context).colorScheme;
+                final skills = [
+                  'Mobile development (Flutter)',
+                  'Full Stack web development',
+                  'Node.js',
+                  'Mongo',
+                  'React',
+                  'Ruby on Rails',
+                  'JavaScript',
+                  'HTML',
+                  'CSS',
+                  'AWS',
+                  'SQL',
+                  'Docker',
+                  'Firebase',
+                  'Git',
+                  'REST APIs',
+                  'UI/UX (Basics)',
+                  'Responsive Design',
+                  'CI/CD',
+                  'TDD',
+                  'BDD',
+                  'Ruby',
+                  'Dart'
+                ];
+
+                return Wrap(
+                  spacing: 10.0, // Slightly reduced spacing
+                  runSpacing: 10.0,
+                  children: skills.map((skill) {
+                    final chipColor = _getChipColor(skill, colorScheme);
+                    final textColor = chipColor.computeLuminance() > 0.5
+                        ? Colors.black
+                            .withOpacity(0.8) // Slightly transparent black
+                        : Colors.white
+                            .withOpacity(0.95); // Slightly transparent white
+
+                    return Chip(
+                      label: Text(skill),
+                      backgroundColor:
+                          chipColor.withOpacity(0.9), // Slight transparency
+                      labelStyle: TextStyle(
+                        color: textColor,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 13, // Slightly smaller font size
+                      ),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 12.0, vertical: 8.0), // Adjusted padding
+                      shape: RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadius.circular(8.0), // Less rounded
+                          side: BorderSide(
+                            color: chipColor.computeLuminance() > 0.5
+                                ? Colors.black.withOpacity(0.1)
+                                : Colors.white.withOpacity(
+                                    0.2), // Border based on contrast
+                            width: 1.0,
+                          )),
+                      // Removed elevation for a flatter look, relying on color and border
+                      // elevation: 1.0,
+                    );
+                  }).toList(),
+                );
+              }),
+              backgroundColor:
+                  colorScheme.surfaceContainerLowest, // Alternating color
               horizontalPadding: horizontalPadding,
             ),
 
             // --- 5. Contact Section ---
             Container(
               padding: EdgeInsets.symmetric(
-                  horizontal: horizontalPadding, vertical: 60.0),
-              color:
-                  colorScheme.primaryContainer, // Use primary container color
+                  horizontal: horizontalPadding,
+                  vertical: 70.0), // Increased padding
+              color: colorScheme.primaryContainer
+                  .withOpacity(0.8), // Use primary container color with opacity
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
                     'Get In Touch',
-                    style: textTheme.headlineMedium
-                        ?.copyWith(color: colorScheme.onPrimaryContainer),
+                    style: textTheme.headlineMedium?.copyWith(
+                        color: colorScheme.onPrimaryContainer,
+                        fontWeight: FontWeight.bold),
                   ),
-                  const SizedBox(height: 15),
+                  const SizedBox(height: 20),
                   Text(
-                    "I'm currently open to new opportunities and collaborations. Feel free to reach out via email or connect with me on LinkedIn!",
+                    "I'm currently open to new opportunities and collaborations.\nFeel free to reach out via email or connect with me on LinkedIn!", // Added line break
                     style: textTheme.bodyLarge?.copyWith(
-                        color: colorScheme.onPrimaryContainer.withOpacity(0.8)),
+                        color: colorScheme.onPrimaryContainer.withOpacity(0.9),
+                        height: 1.5),
                     textAlign: TextAlign.center,
                   ),
-                  const SizedBox(height: 30),
-                  // Contact Buttons with Icons and Hover Effect
+                  const SizedBox(height: 35),
                   Wrap(
-                    // Use Wrap for better responsiveness of buttons
                     spacing: 15,
                     runSpacing: 15,
                     alignment: WrapAlignment.center,
                     children: [
-                      ElevatedButton.icon(
-                        icon: const Icon(Icons.email),
-                        label: const Text('Email'),
+                      // Enhanced Button Styles
+                      _buildContactButton(
+                        context: context,
+                        icon: Icons.email,
+                        label: 'Email Me',
                         onPressed: () => _launchEmail(
                             'aaryn.alexander@gmail.com',
                             subject: 'Website Contact'),
-                        style: ElevatedButton.styleFrom(
-                          foregroundColor: colorScheme.onPrimary,
-                          backgroundColor: colorScheme.primary,
-                        ).copyWith(
-                          // Basic hover effect for web
-                          overlayColor: WidgetStateProperty.resolveWith<Color?>(
-                            (Set<WidgetState> states) {
-                              if (states.contains(WidgetState.hovered)) {
-                                return colorScheme.onPrimary.withOpacity(0.1);
-                              }
-                              return null; // Defer to the widget's default.
-                            },
-                          ),
-                        ),
+                        isPrimary: true, // Primary style for email
                       ),
-                      ElevatedButton.icon(
-                        icon: const Icon(Icons
-                            .link), // Replace with a LinkedIn specific icon if you add an icon font
-                        label: const Text('LinkedIn'),
+                      _buildContactButton(
+                        context: context,
+                        icon: Icons.link, // Consider specific icons later
+                        label: 'LinkedIn',
                         onPressed: () =>
                             _launchURL('https://www.linkedin.com/in/aabiro/'),
-                        style: ElevatedButton.styleFrom(
-                          foregroundColor: colorScheme.primary, // Text color
-                          backgroundColor:
-                              colorScheme.surface, // Background color
-                          side:
-                              BorderSide(color: colorScheme.primary), // Border
-                        ).copyWith(
-                          overlayColor: WidgetStateProperty.resolveWith<Color?>(
-                            (Set<WidgetState> states) {
-                              if (states.contains(WidgetState.hovered)) {
-                                return colorScheme.primary.withOpacity(0.1);
-                              }
-                              return null;
-                            },
-                          ),
-                        ),
                       ),
-                      ElevatedButton.icon(
-                        icon: const Icon(
-                            Icons.code), // Replace with a GitHub specific icon
-                        label: const Text('GitHub'),
+                      _buildContactButton(
+                        context: context,
+                        icon: Icons.code, // Consider specific icons later
+                        label: 'GitHub',
                         onPressed: () =>
                             _launchURL('https://github.com/aabiro'),
-                        style: ElevatedButton.styleFrom(
-                          foregroundColor: colorScheme.primary,
-                          backgroundColor: colorScheme.surface,
-                          side: BorderSide(color: colorScheme.primary),
-                        ).copyWith(
-                          overlayColor: WidgetStateProperty.resolveWith<Color?>(
-                            (Set<WidgetState> states) {
-                              if (states.contains(WidgetState.hovered)) {
-                                return colorScheme.primary.withOpacity(0.1);
-                              }
-                              return null;
-                            },
-                          ),
-                        ),
                       ),
-                      // Add more buttons (Twitter, Portfolio, etc.)
                     ],
                   ),
                 ],
@@ -260,12 +307,14 @@ class HomePage extends StatelessWidget {
             // --- 6. Footer ---
             Container(
               padding: EdgeInsets.symmetric(
-                  vertical: 25.0, horizontal: horizontalPadding),
-              color: colorScheme.surfaceContainerHighest.withOpacity(0.5),
+                  vertical: 30.0,
+                  horizontal: horizontalPadding), // Increased padding
+              color: colorScheme
+                  .surfaceContainer, // Slightly darker footer background
               alignment: Alignment.center,
               child: Text(
                 '© ${DateTime.now().year} Aaryn Biro. Built with Flutter.',
-                style: textTheme.bodySmall
+                style: textTheme.bodyMedium // Slightly larger footer text
                     ?.copyWith(color: colorScheme.onSurfaceVariant),
               ),
             ),
@@ -287,18 +336,20 @@ class HomePage extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
 
     return Container(
-      padding:
-          EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: 50.0),
+      padding: EdgeInsets.symmetric(
+          horizontal: horizontalPadding,
+          vertical: 60.0), // Increased vertical padding
       color: backgroundColor,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             title,
-            style: textTheme.headlineMedium
-                ?.copyWith(color: colorScheme.onSurface),
+            // Bolder section titles
+            style: textTheme.headlineMedium?.copyWith(
+                color: colorScheme.onSurface, fontWeight: FontWeight.bold),
           ),
-          const SizedBox(height: 30), // Increased spacing after title
+          const SizedBox(height: 35), // Increased spacing after title
           child,
         ],
       ),
@@ -306,12 +357,15 @@ class HomePage extends StatelessWidget {
   }
 
   // Helper widget to build the projects grid/list
-  Widget _buildProjectsGrid(BuildContext context) {
+  // --- FIX: Added horizontalPadding parameter ---
+  Widget _buildProjectsGrid(BuildContext context,
+      {required double horizontalPadding}) {
+    // --- END FIX ---
     final textTheme = Theme.of(context).textTheme;
     final colorScheme = Theme.of(context).colorScheme;
     final screenSize = MediaQuery.of(context).size;
 
-    // Project data
+    // Project data (ensure descriptions are detailed enough for expansion)
     final projects = [
       {
         'title': 'GivnGo',
@@ -340,97 +394,106 @@ class HomePage extends StatelessWidget {
             'https://github.com/aabiro/react_rails_recipe_app?tab=readme-ov-file#recipe-finder-application',
         'liveUrl': 'https://rails-react-recipe-finder-frontend.onrender.com/',
       },
-      // Add more projects here...
     ];
 
-    // Determine number of columns based on screen width (simple responsiveness)
-    int crossAxisCount =
-        screenSize.width > 1200 ? 3 : (screenSize.width > 800 ? 2 : 1);
+    // Determine number of columns based on screen width
+    int crossAxisCount = screenSize.width > 1200
+        ? 3
+        : (screenSize.width > 700 ? 2 : 1); // Adjusted breakpoint
 
-    // Build the grid view
+    // Calculate desired aspect ratio based on testing or fixed height approach
+    double cardHeight = 420; // Define a target height for the card
+    // --- FIX: Use horizontalPadding in calculation ---
+    double availableWidth = screenSize.width - (horizontalPadding * 2);
+    double cardWidth =
+        (availableWidth - (25.0 * (crossAxisCount - 1))) / crossAxisCount;
+    // --- END FIX ---
+    double aspectRatio =
+        cardWidth > 0 ? cardWidth / cardHeight : 0.8; // Avoid division by zero
+
     return GridView.builder(
-      shrinkWrap: true, // Important inside SingleChildScrollView
-      physics: const NeverScrollableScrollPhysics(), // Disable grid scrolling
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: crossAxisCount,
-        crossAxisSpacing: 20.0,
-        mainAxisSpacing: 20.0,
-        childAspectRatio: 0.8, // Adjust aspect ratio (width/height) as needed
+        crossAxisSpacing: 25.0, // Increased spacing
+        mainAxisSpacing: 25.0, // Increased spacing
+        // Use calculated aspect ratio
+        childAspectRatio: aspectRatio,
       ),
       itemCount: projects.length,
       itemBuilder: (context, index) {
         final project = projects[index];
         return Card(
-          clipBehavior: Clip.antiAlias, // Ensures image corners are clipped
-          elevation: 3,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          clipBehavior: Clip.antiAlias,
+          // Slightly increased elevation and softer shadow
+          elevation: 4,
+          shadowColor: Colors.black.withOpacity(0.1),
+          shape: RoundedRectangleBorder(
+              borderRadius:
+                  BorderRadius.circular(12)), // Slightly larger radius
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Project Image (Use AspectRatio for consistent height)
+              // Project Image
               AspectRatio(
-                aspectRatio: 16 / 9, // Common image aspect ratio
+                aspectRatio: 16 / 9,
                 child: Image.network(
                   project['imageUrl']!,
                   fit: BoxFit.cover,
-                  // Add error builder for placeholder if image fails
                   errorBuilder: (context, error, stackTrace) {
                     return Container(
-                      color: Colors.grey[300],
+                      color: Colors.grey[200], // Lighter placeholder
                       alignment: Alignment.center,
-                      child: Icon(Icons.image_not_supported,
-                          color: Colors.grey[600]),
+                      child: Icon(Icons.broken_image_outlined, // Different icon
+                          color: Colors.grey[500],
+                          size: 40),
                     );
                   },
                 ),
               ),
-              // Project Details (Make this part scrollable if content overflows)
-              Expanded(
-                // Allow this section to take remaining space
+              // Project Details - Use Flexible instead of Expanded for better control with SingleChildScrollView
+              Flexible(
                 child: SingleChildScrollView(
-                  // Make details scrollable
-                  padding: const EdgeInsets.all(15.0),
+                  padding: const EdgeInsets.all(16.0), // Consistent padding
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min, // Take minimum space needed
                     children: [
                       Text(
                         project['title']!,
-                        style: textTheme.titleLarge?.copyWith(
-                            fontSize: 18), // Slightly smaller title for card
+                        style: textTheme.titleMedium?.copyWith(
+                            fontWeight: FontWeight.bold), // Bolder title
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
                       const SizedBox(height: 8),
-                      // --- Use the new Expandable Text Widget ---
                       _ExpandableText(
                         text: project['description']!,
-                        style: textTheme.bodyMedium,
-                        maxLength: 100, // Adjust max length before truncating
+                        style: textTheme.bodyMedium?.copyWith(
+                            color: colorScheme
+                                .onSurfaceVariant), // Subtler text color
+                        maxLength: 90, // Slightly shorter default length
                       ),
-                      // --- End Expandable Text ---
-                      const SizedBox(height: 15),
-                      // Action Buttons (GitHub, Live Demo)
+                      const SizedBox(height: 16), // More space before buttons
                       Wrap(
-                        spacing: 8,
+                        spacing: 10,
                         runSpacing: 4,
                         children: [
                           if (project['githubUrl'] != null)
-                            TextButton.icon(
-                              icon: const Icon(Icons.code, size: 18),
-                              label: const Text('GitHub'),
+                            _buildLinkButton(
+                              context: context,
+                              icon: Icons.code_outlined, // Outlined icon
+                              label: 'GitHub',
                               onPressed: () =>
                                   _launchURL(project['githubUrl']!),
-                              style: TextButton.styleFrom(
-                                  padding: EdgeInsets.zero),
                             ),
                           if (project['liveUrl'] != null)
-                            TextButton.icon(
-                              icon: const Icon(Icons.open_in_new, size: 18),
-                              label: const Text('Live Demo'),
+                            _buildLinkButton(
+                              context: context,
+                              icon: Icons.open_in_new_outlined, // Outlined icon
+                              label: 'Live Demo',
                               onPressed: () => _launchURL(project['liveUrl']!),
-                              style: TextButton.styleFrom(
-                                  padding: EdgeInsets.zero),
                             ),
                         ],
                       )
@@ -444,10 +507,78 @@ class HomePage extends StatelessWidget {
       },
     );
   }
+
+  // --- ADDED: Helper for consistent TextButton styling in cards ---
+  Widget _buildLinkButton({
+    required BuildContext context,
+    required IconData icon,
+    required String label,
+    required VoidCallback onPressed,
+  }) {
+    final colorScheme = Theme.of(context).colorScheme;
+    return TextButton.icon(
+      icon: Icon(icon, size: 18, color: colorScheme.primary),
+      label: Text(label, style: TextStyle(color: colorScheme.primary)),
+      onPressed: onPressed,
+      style: TextButton.styleFrom(
+        padding: const EdgeInsets.symmetric(
+            horizontal: 4, vertical: 2), // Minimal padding
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap, // Smaller tap target
+        visualDensity: VisualDensity.compact, // Compact density
+        textStyle: const TextStyle(fontSize: 13), // Smaller text
+      ),
+    );
+  }
+
+  // --- ADDED: Helper for consistent ElevatedButton styling in contact section ---
+  Widget _buildContactButton({
+    required BuildContext context,
+    required IconData icon,
+    required String label,
+    required VoidCallback onPressed,
+    bool isPrimary = false, // Flag for primary button style
+  }) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
+
+    return ElevatedButton.icon(
+      icon: Icon(icon, size: 20), // Slightly larger icon
+      label: Text(label),
+      onPressed: onPressed,
+      style: ElevatedButton.styleFrom(
+        // Conditional styling based on isPrimary flag
+        foregroundColor:
+            isPrimary ? colorScheme.onPrimary : colorScheme.primary,
+        backgroundColor: isPrimary ? colorScheme.primary : colorScheme.surface,
+        side: isPrimary
+            ? null
+            : BorderSide(
+                color: colorScheme.primary
+                    .withOpacity(0.5)), // Subtle border for secondary
+        padding: const EdgeInsets.symmetric(
+            horizontal: 24, vertical: 12), // More padding
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30)), // Pill shape
+        textStyle: textTheme.labelLarge, // Use theme's label style
+        elevation: isPrimary ? 2 : 1, // Subtle elevation difference
+      ).copyWith(
+        overlayColor: WidgetStateProperty.resolveWith<Color?>(
+          (Set<WidgetState> states) {
+            if (states.contains(WidgetState.hovered)) {
+              return isPrimary
+                  ? colorScheme.onPrimary.withOpacity(0.1)
+                  : colorScheme.primary.withOpacity(0.05);
+            }
+            return null;
+          },
+        ),
+      ),
+    );
+  }
 }
 
 // ======================================================================
-// New Stateful Widget for Expandable Text
+// Stateful Widget for Expandable Text (No changes needed here)
 // ======================================================================
 class _ExpandableText extends StatefulWidget {
   final String text;
@@ -484,21 +615,17 @@ class _ExpandableTextState extends State<_ExpandableText> {
         Text(
           displayText,
           style: widget.style,
-          // maxLines: _isExpanded ? null : 4, // Alternative: Use maxLines for clipping
-          // overflow: TextOverflow.ellipsis,
         ),
         // Show the button only if truncation is needed
         if (needsTruncation)
           Padding(
-            padding: const EdgeInsets.only(
-                top: 4.0), // Add some space above the button
+            padding: const EdgeInsets.only(top: 4.0),
             child: TextButton(
               style: TextButton.styleFrom(
-                padding: EdgeInsets.zero, // Remove default padding
-                minimumSize: const Size(0, 0), // Allow button to be small
-                tapTargetSize:
-                    MaterialTapTargetSize.shrinkWrap, // Reduce tap area
-                alignment: Alignment.centerLeft, // Align text to the left
+                padding: EdgeInsets.zero,
+                minimumSize: const Size(0, 0),
+                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                alignment: Alignment.centerLeft,
               ),
               onPressed: () {
                 setState(() {
@@ -508,7 +635,7 @@ class _ExpandableTextState extends State<_ExpandableText> {
               child: Text(
                 _isExpanded ? 'Show Less' : 'Read More',
                 style: TextStyle(
-                  color: colorScheme.primary, // Use theme primary color
+                  color: colorScheme.primary,
                   fontWeight: FontWeight.bold,
                 ),
               ),
