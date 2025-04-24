@@ -331,7 +331,7 @@ class HomePage extends StatelessWidget {
       {
         'title': 'Recipe Finder Application',
         'description':
-            'A checklist of ingredients to render recipes that are associated with all selected ingredients.',
+            'A full-stack recipe search application featuring a Ruby on Rails API backend (with PostgreSQL) and a dynamic React frontend. Demonstrates REST API consumption and separation of concerns. Both components are deployed live using Render.',
         'imageUrl': 'https://i.imgur.com/1nC5IA0.jpeg',
         'githubUrl':
             'https://github.com/aabiro/react_rails_recipe_app?tab=readme-ov-file#recipe-finder-application',
