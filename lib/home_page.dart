@@ -34,7 +34,8 @@ class HomePage extends StatelessWidget {
 
     // Define consistent horizontal padding based on screen size (basic responsiveness)
     final horizontalPadding = screenSize.width > 800 ? 80.0 : 30.0;
-    const String profileImagePath = 'assets/headshot.JPG';
+    const String profileImagePath =
+        'assets/headshot.JPG'; // Ensure this path is correct in pubspec.yaml
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -66,14 +67,14 @@ class HomePage extends StatelessWidget {
                     backgroundColor:
                         Colors.white.withOpacity(0.8), // Fallback background
                     // Use backgroundImage for the asset image
-                    backgroundImage: profileImagePath != null
-                        ? AssetImage(profileImagePath) // Load image from assets
-                        : null, // Set to null if no image path is provided
-                    // Use child for the placeholder icon ONLY if backgroundImage is null
-                    child: profileImagePath == null
-                        ? Icon(Icons.person,
-                            size: 60, color: colorScheme.primary)
-                        : null, // Don't show icon if image is present
+                    backgroundImage: const AssetImage(
+                        profileImagePath), // Load image from assets
+                    onBackgroundImageError: (exception, stackTrace) {
+                      // Handle image loading errors, e.g., log or show placeholder
+                      print('Error loading profile image: $exception');
+                    },
+                    // Use child for the placeholder icon ONLY if backgroundImage fails (handled by onBackgroundImageError potentially)
+                    // child: Icon(Icons.person, size: 60, color: colorScheme.primary),
                   ),
                   const SizedBox(height: 25),
                   Text(
@@ -274,6 +275,7 @@ class HomePage extends StatelessWidget {
     );
   }
 
+  // Helper to build standard sections
   Widget _buildSection({
     required BuildContext context,
     required String title,
@@ -309,11 +311,12 @@ class HomePage extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
     final screenSize = MediaQuery.of(context).size;
 
+    // Project data
     final projects = [
       {
         'title': 'GivnGo',
         'description':
-            'Developed a peer-to-peer bicycle rental mobile app (iOS/Android) using Flutter/Dart. The platform allows users to easily find and rent bikes for city transport or lend their own for extra income.',
+            'Developed a peer-to-peer bicycle rental mobile app (iOS/Android) using Flutter/Dart. The platform allows users to easily find and rent bikes for city transport or lend their own for extra income. Features include location-based search, secure payments, user profiles, and real-time booking management.',
         'imageUrl':
             'https://raw.githubusercontent.com/aabiro/GivnGo/refs/heads/master/assets/gnglogo.png', // Placeholder
         'githubUrl': 'https://github.com/aabiro/GivnGo',
@@ -322,7 +325,7 @@ class HomePage extends StatelessWidget {
       {
         'title': 'Flutter Countdown Timer',
         'description':
-            'Developed a responsive countdown timer using Flutter, demonstrating cross-platform capabilities for seamless use on mobile devices and the web.',
+            'Developed a responsive countdown timer using Flutter, demonstrating cross-platform capabilities for seamless use on mobile devices and the web. Includes features like setting custom durations, pause/resume functionality, and visual feedback.',
         'imageUrl': 'https://i.imgur.com/z68LtyT.png',
         'githubUrl':
             'https://github.com/aabiro/flutter_countdown_timer?tab=readme-ov-file#countdown_pal_app',
@@ -331,18 +334,20 @@ class HomePage extends StatelessWidget {
       {
         'title': 'Recipe Finder Application',
         'description':
-            'A full-stack recipe search application featuring a Ruby on Rails API backend (with PostgreSQL) and a dynamic React frontend. Demonstrates REST API consumption and separation of concerns. Both components are deployed live using Render.',
+            'A full-stack recipe search application featuring a Ruby on Rails API backend (with PostgreSQL) and a dynamic React frontend. Demonstrates REST API consumption and separation of concerns between data management and user interface presentation. The Rails API serves recipe data through RESTful endpoints, while the React frontend consumes this API to provide a seamless and interactive user experience, including real-time search filtering and detailed recipe views. Both components are deployed live using Render, showcasing experience with cloud platform deployment for full-stack applications.',
         'imageUrl': 'https://i.imgur.com/1nC5IA0.jpeg',
         'githubUrl':
             'https://github.com/aabiro/react_rails_recipe_app?tab=readme-ov-file#recipe-finder-application',
         'liveUrl': 'https://rails-react-recipe-finder-frontend.onrender.com/',
       },
+      // Add more projects here...
     ];
 
     // Determine number of columns based on screen width (simple responsiveness)
     int crossAxisCount =
         screenSize.width > 1200 ? 3 : (screenSize.width > 800 ? 2 : 1);
 
+    // Build the grid view
     return GridView.builder(
       shrinkWrap: true, // Important inside SingleChildScrollView
       physics: const NeverScrollableScrollPhysics(), // Disable grid scrolling
@@ -380,57 +385,136 @@ class HomePage extends StatelessWidget {
                   },
                 ),
               ),
-              // Project Details
-              Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      project['title']!,
-                      style: textTheme.titleLarge?.copyWith(
-                          fontSize: 18), // Slightly smaller title for card
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      project['description']!,
-                      style: textTheme.bodyMedium,
-                      maxLines: 4, // Limit description lines
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    const SizedBox(height: 15),
-                    // Action Buttons (GitHub, Live Demo)
-                    Wrap(
-                      spacing: 8,
-                      runSpacing: 4,
-                      children: [
-                        if (project['githubUrl'] != null)
-                          TextButton.icon(
-                            icon: const Icon(Icons.code, size: 18),
-                            label: const Text('GitHub'),
-                            onPressed: () => _launchURL(project['githubUrl']!),
-                            style:
-                                TextButton.styleFrom(padding: EdgeInsets.zero),
-                          ),
-                        if (project['liveUrl'] != null)
-                          TextButton.icon(
-                            icon: const Icon(Icons.open_in_new, size: 18),
-                            label: const Text('Live Demo'),
-                            onPressed: () => _launchURL(project['liveUrl']!),
-                            style:
-                                TextButton.styleFrom(padding: EdgeInsets.zero),
-                          ),
-                      ],
-                    )
-                  ],
+              // Project Details (Make this part scrollable if content overflows)
+              Expanded(
+                // Allow this section to take remaining space
+                child: SingleChildScrollView(
+                  // Make details scrollable
+                  padding: const EdgeInsets.all(15.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        project['title']!,
+                        style: textTheme.titleLarge?.copyWith(
+                            fontSize: 18), // Slightly smaller title for card
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      const SizedBox(height: 8),
+                      // --- Use the new Expandable Text Widget ---
+                      _ExpandableText(
+                        text: project['description']!,
+                        style: textTheme.bodyMedium,
+                        maxLength: 100, // Adjust max length before truncating
+                      ),
+                      // --- End Expandable Text ---
+                      const SizedBox(height: 15),
+                      // Action Buttons (GitHub, Live Demo)
+                      Wrap(
+                        spacing: 8,
+                        runSpacing: 4,
+                        children: [
+                          if (project['githubUrl'] != null)
+                            TextButton.icon(
+                              icon: const Icon(Icons.code, size: 18),
+                              label: const Text('GitHub'),
+                              onPressed: () =>
+                                  _launchURL(project['githubUrl']!),
+                              style: TextButton.styleFrom(
+                                  padding: EdgeInsets.zero),
+                            ),
+                          if (project['liveUrl'] != null)
+                            TextButton.icon(
+                              icon: const Icon(Icons.open_in_new, size: 18),
+                              label: const Text('Live Demo'),
+                              onPressed: () => _launchURL(project['liveUrl']!),
+                              style: TextButton.styleFrom(
+                                  padding: EdgeInsets.zero),
+                            ),
+                        ],
+                      )
+                    ],
+                  ),
                 ),
               ),
             ],
           ),
         );
       },
+    );
+  }
+}
+
+// ======================================================================
+// New Stateful Widget for Expandable Text
+// ======================================================================
+class _ExpandableText extends StatefulWidget {
+  final String text;
+  final int maxLength;
+  final TextStyle? style; // Allow passing text style
+
+  const _ExpandableText({
+    required this.text,
+    this.maxLength = 100, // Default max length
+    this.style,
+  });
+
+  @override
+  _ExpandableTextState createState() => _ExpandableTextState();
+}
+
+class _ExpandableTextState extends State<_ExpandableText> {
+  bool _isExpanded = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final bool needsTruncation = widget.text.length > widget.maxLength;
+
+    // Determine the text to display
+    final String displayText = needsTruncation && !_isExpanded
+        ? '${widget.text.substring(0, widget.maxLength)}...' // Truncated text
+        : widget.text; // Full text
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // Display the text
+        Text(
+          displayText,
+          style: widget.style,
+          // maxLines: _isExpanded ? null : 4, // Alternative: Use maxLines for clipping
+          // overflow: TextOverflow.ellipsis,
+        ),
+        // Show the button only if truncation is needed
+        if (needsTruncation)
+          Padding(
+            padding: const EdgeInsets.only(
+                top: 4.0), // Add some space above the button
+            child: TextButton(
+              style: TextButton.styleFrom(
+                padding: EdgeInsets.zero, // Remove default padding
+                minimumSize: const Size(0, 0), // Allow button to be small
+                tapTargetSize:
+                    MaterialTapTargetSize.shrinkWrap, // Reduce tap area
+                alignment: Alignment.centerLeft, // Align text to the left
+              ),
+              onPressed: () {
+                setState(() {
+                  _isExpanded = !_isExpanded;
+                });
+              },
+              child: Text(
+                _isExpanded ? 'Show Less' : 'Read More',
+                style: TextStyle(
+                  color: colorScheme.primary, // Use theme primary color
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+      ],
     );
   }
 }
