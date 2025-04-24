@@ -335,7 +335,7 @@ class HomePage extends StatelessWidget {
         'imageUrl': 'https://i.imgur.com/1nC5IA0.jpeg',
         'githubUrl':
             'https://github.com/aabiro/react_rails_recipe_app?tab=readme-ov-file#recipe-finder-application',
-        'liveUrl': null,
+        'liveUrl': 'https://rails-react-recipe-finder-frontend.onrender.com/',
       },
     ];
 
