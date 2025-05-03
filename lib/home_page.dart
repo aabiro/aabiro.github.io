@@ -368,6 +368,15 @@ class HomePage extends StatelessWidget {
     // Project data (ensure descriptions are detailed enough for expansion)
     final projects = [
       {
+        'title': 'TTC LiveChat: Real-Time Transit Map & Community Feed',
+        'description':
+            'Full-stack real-time TTC tracking & chat app using a Rails API (PostgreSQL, Redis, Action Cable) and a React/TypeScript frontend. Demonstrates WebSocket data handling, API integration, and Leaflet map visualization. The Rails API serves live vehicle/alert/route data and persists user messages/reports via REST and WebSockets. The React frontend consumes these streams for a dynamic Leaflet map showing live vehicles, routes, reports, alerts, and includes route-specific chat. Deployed with Rails on Heroku and React on Render (Static Site), showcasing full-stack deployment with WebSockets. Backend: Ruby on Rails (API), PostgreSQL, Redis, Action Cable, Puma. Frontend: React, TypeScript, Vite, Leaflet, React-Leaflet, Tailwind CSS, Axios. Deployment: Heroku (Backend), Render (Frontend Static Site).',
+        'imageUrl': 'https://i.imgur.com/QrtWtLE.png',
+        'githubUrl':
+            'https://github.com/aabiro/ttc_realtime_app',
+        'liveUrl': 'https://ttc-realtime-app-frontend.onrender.com/',
+      },
+      {
         'title': 'GivnGo',
         'description':
             'Developed a peer-to-peer bicycle rental mobile app (iOS/Android) using Flutter/Dart. The platform allows users to easily find and rent bikes for city transport or lend their own for extra income. Features include location-based search, secure payments, user profiles, and real-time booking management.',
