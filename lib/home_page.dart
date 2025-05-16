@@ -368,6 +368,15 @@ class HomePage extends StatelessWidget {
     // Project data (ensure descriptions are detailed enough for expansion)
     final projects = [
       {
+        'title': 'AI Smart Subscription Tracker',
+        'description':
+            'Developed a cross-platform Smart Subscription Tracker app using Flutter, built for iOS and Android with web support enabled. The app leverages Firebase for hosting and authentication, and Supabase for real-time data management. Users can manage subscriptions, receive AI-powered suggestions, and customize preferences through a polished, responsive UI—demonstrating seamless functionality across mobile and web platforms.',
+        'imageUrl': 'https://i.imgur.com/1A76oxy.png',
+        'githubUrl':
+            'https://github.com/aabiro/smart_subscription_tracker',
+        'liveUrl': 'https://smart-subscription-tracker-app.web.app',
+      },
+      {
         'title': 'TTC LiveChat: Real-Time Transit Map',
         'description':
             'Full-stack real-time TTC tracking & chat app using a Rails API (PostgreSQL, Redis, Action Cable) and a React/TypeScript frontend. Demonstrates WebSocket data handling, API integration, and Leaflet map visualization. The Rails API serves live vehicle/alert/route data and persists user messages/reports via REST and WebSockets. The React frontend consumes these streams for a dynamic Leaflet map showing live vehicles, routes, reports, alerts, and includes route-specific chat. Deployed with Rails on Heroku and React on Render (Static Site), showcasing full-stack deployment with WebSockets. Backend: Ruby on Rails (API), PostgreSQL, Redis, Action Cable, Puma. Frontend: React, TypeScript, Vite, Leaflet, React-Leaflet, Tailwind CSS, Axios. Deployment: Heroku (Backend), Render (Frontend Static Site).',
