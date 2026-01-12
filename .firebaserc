@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "aabiro-github-io"
+  },
+  "targets": {
+    "aabiro-github-io": {
+      "hosting": {
+        "default": [
+          "aabiro-github-io"
+        ]
+      }
+    }
   }
 }

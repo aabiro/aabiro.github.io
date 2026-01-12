@@ -4,14 +4,13 @@
       "dart": {
         "lib/firebase_options.dart": {
           "projectId": "aabiro-github-io",
-          "configurations": {
-            "web": "1:989012697538:web:3f1387333db1ea4e24765b"
-          }
+          "configurations": { "web": "1:989012697538:web:3f1387333db1ea4e24765b" }
         }
       }
     }
   },
   "hosting": {
+    "site": "aabiro-github-io",
     "public": "build/web",
     "ignore": [
       "firebase.json",

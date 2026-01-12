@@ -7,116 +7,151 @@ class HomePage extends StatelessWidget {
   HomePage({super.key});
 
   final List<Map<String, String>> _highlights = [
-    {'label': 'Years shipping', 'value': '5+', 'caption': 'Product & platform'},
+    {'label': 'Role', 'value': 'Founder & CEO', 'caption': 'PixelEnhance Labs'},
     {
-      'label': 'Stacks',
-      'value': 'Mobile/Web',
-      'caption': 'Flutter, React, Rails'
+      'label': 'Focus',
+      'value': 'Enterprise AI Video',
+      'caption': 'Upscale · Denoise · Realtime'
     },
     {
-      'label': 'Recent focus',
-      'value': 'AI + UX',
-      'caption': 'Realtime + LLM assist'
+      'label': 'Stack',
+      'value': 'Python • React',
+      'caption': 'TypeScript · Node.js · Flutter · Nginx'
     },
     {
-      'label': 'Based in',
-      'value': 'Canada',
-      'caption': 'EST · Remote friendly'
+      'label': 'Location',
+      'value': 'Toronto · EST',
+      'caption': 'Remote friendly'
     },
   ];
 
   final List<Map<String, dynamic>> _experiences = [
     {
-      'role': 'Senior Software Engineer (Freelance)',
-      'period': '2022 — Now',
+      'role': 'Founder & CEO — PixelEnhance Labs',
+      'period': 'Jan 2024 — Present',
       'bullets': [
-        'Shipping full-stack apps across Flutter, React, and Rails.',
-        'Realtime experiences: websockets, live maps, chat, streaming data.',
-        'Cloud/devops: Firebase, Render, Heroku, CI/CD, observability.'
+        'Building an enterprise AI video platform for upscaling, denoising, relighting, and audio/VR optimization.',
+        'Designed Python/FastAPI microservices with Redis/PostgreSQL and secure APIs.',
+        'Developed React/TypeScript control plane for customers to run GPU workflows.',
+        'GPU pipelines with PyTorch and TensorRT delivering sub-25ms latency.',
+        'Hybrid cloud GPU fleet orchestration, observability, and Nginx edge configs.',
       ],
     },
     {
-      'role': 'Full Stack Engineer',
-      'period': '2019 — 2022',
+      'role': 'Software Engineer — Snappy',
+      'period': 'Mar 2023 — Dec 2023',
       'bullets': [
-        'Built SaaS features end-to-end with React, Node/Rails, and Postgres.',
-        'Led UI refreshes with modern design systems and accessibility focus.',
-        'Mentored juniors; improved release cadence with automation.'
+        'Spearheaded mobile feature delivery with daily App Store/Play Store builds.',
+        'Built end-to-end membership and rewards flows with robust auth/verification.',
+        'Partnered in Agile sprints to turn around customer requests rapidly.',
+      ],
+    },
+    {
+      'role': 'Software Developer — Neurolign Technologies',
+      'period': 'Jun 2021 — Dec 2022',
+      'bullets': [
+        'Shipped complex Flutter/Dart components with multithreading and modern state management.',
+        'Integrated third-party APIs, CircleCI pipelines, testing, and Firebase analytics.',
+        'Collaborated in Figma to deliver fully responsive mobile experiences.',
+        'Built and consumed APIs with Node.js, MongoDB, and Express.',
+      ],
+    },
+    {
+      'role': 'Full Stack Software Engineer — realxdata GmbH',
+      'period': 'May 2018 — Sep 2019',
+      'bullets': [
+        'Developed SaaS features with Ruby on Rails, React/TypeScript, Redux, and PostgreSQL.',
+        'Automated workflows and data visualizations; integrated AWS (EC2, Lambda, S3) services.',
+        'Maintained quality with RSpec tests and CI/CD, reducing testing time and release risk.',
       ],
     },
   ];
 
   final Map<String, List<String>> _skills = {
-    'Frontend & Mobile': [
-      'Flutter',
-      'Dart',
-      'React',
-      'TypeScript',
-      'Next.js',
-      'Responsive UX',
+    'AI & Video Platform': [
+      'PyTorch',
+      'TensorRT',
+      'GPU inference pipelines',
+      'FFmpeg / WebCodecs',
+      'Real-time HLS streaming',
+      'Computer vision upscaling/denoise',
+      'Edge caching with Nginx',
     ],
     'Backend & Data': [
+      'Python / FastAPI',
       'Node.js',
-      'Ruby on Rails',
       'PostgreSQL',
-      'MongoDB',
-      'REST/GraphQL',
+      'Redis',
+      'Celery & queues',
+      'REST / GraphQL',
+      'Pub/Sub & messaging',
     ],
-    'Cloud & Ops': [
-      'AWS',
-      'Firebase',
-      'CI/CD',
+    'Frontend & Mobile': [
+      'React 18',
+      'TypeScript',
+      'Tailwind CSS',
+      'Flutter / Dart',
+      'Kotlin / Gradle',
+      'Responsive UX',
+    ],
+    'Cloud, Ops & Delivery': [
+      'Multi-cloud GPU orchestration',
       'Docker',
-      'Testing/TDD',
-      'Observability',
+      'CI/CD & GitOps',
+      'AWS & Firebase',
+      'Monitoring & analytics',
+      'Performance tuning',
     ],
-    'Product & Delivery': [
-      'UX Writing',
-      'Rapid prototyping',
-      'Analytics',
-      'A/B testing',
+    'Product & Leadership': [
+      'Product strategy',
+      'Roadmapping',
       'Agile delivery',
+      'Mentorship',
+      'Customer discovery',
+      'Rapid prototyping',
     ],
   };
 
   final List<Map<String, String?>> _projects = [
     {
-      'title': 'AI Smart Subscription Tracker',
+      'title': 'PixelEnhance Labs Platform',
       'description':
-          'Cross-platform (iOS/Android/Web) tracker with Firebase auth/hosting, Supabase realtime data, and AI-powered insights. Polished UX built in Flutter.',
-      'imageUrl': 'https://i.imgur.com/1A76oxy.png',
-      'githubUrl': 'https://github.com/aabiro/smart_subscription_tracker',
-      'liveUrl': 'https://smart-subscription-tracker-app.web.app',
-      'tags': 'Flutter · Firebase · Supabase · AI'
-    },
-    {
-      'title': 'TTC LiveChat: Real-Time Transit Map',
-      'description':
-          'Rails API (Postgres, Redis, Action Cable) + React/TypeScript frontend for live vehicles, alerts, chat, and reporting with Leaflet maps.',
-      'imageUrl': 'https://i.imgur.com/QrtWtLE.png',
-      'githubUrl': 'https://github.com/aabiro/ttc_realtime_app',
-      'liveUrl': 'https://ttc-realtime-app-frontend.onrender.com/',
-      'tags': 'Rails · React · WebSockets · Leaflet'
-    },
-    {
-      'title': 'GivnGo',
-      'description':
-          'Peer-to-peer bicycle rental app for iOS/Android with location search, secure payments, and real-time booking in Flutter.',
+          'Enterprise AI video enhancement platform for studios, creators, and media pipelines: upscaling, denoise, face/relight, and audio/VR optimization with GPU-accelerated inference.',
       'imageUrl':
-          'https://raw.githubusercontent.com/aabiro/GivnGo/refs/heads/master/assets/gnglogo.png',
-      'githubUrl': 'https://github.com/aabiro/GivnGo',
-      'liveUrl': null,
-      'tags': 'Flutter · Mobile · Payments'
+          'https://images.unsplash.com/photo-1487014679447-9f8336841d58?auto=format&fit=crop&w=1200&q=80',
+      'githubUrl': null,
+      'liveUrl': 'https://www.linkedin.com/in/aabiro/',
+      'tags': 'AI video · PyTorch · TensorRT · HLS'
     },
     {
-      'title': 'Recipe Finder',
+      'title': 'Phantom Trades',
       'description':
-          'Rails API + React frontend with live search filtering, deployed to Render. Clean separation of data + UI.',
-      'imageUrl': 'https://i.imgur.com/1nC5IA0.jpeg',
-      'githubUrl':
-          'https://github.com/aabiro/react_rails_recipe_app?tab=readme-ov-file#recipe-finder-application',
-      'liveUrl': 'https://rails-react-recipe-finder-frontend.onrender.com/',
-      'tags': 'Rails · React · Render'
+          'AI-driven trading copilot with automated DCA-out to lock profits, controllable via Claude Desktop MCP. Runs locally on Ollama with transparent command execution (file edits, shell ops, model routing) and multi-agent handoffs.',
+      'imageUrl':
+          'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80',
+      'githubUrl': null,
+      'liveUrl': null,
+      'tags': 'React · TypeScript · WebSockets · Ollama · MCP'
+    },
+    {
+      'title': 'Ara Code',
+      'description':
+          'AI-assisted code review and authoring companion powered by Ollama + Claude Desktop MCP. Performs repo-aware search, inline linting, patch suggestions, and safe shell automation with auditable execution.',
+      'imageUrl':
+          'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80',
+      'githubUrl': null,
+      'liveUrl': null,
+      'tags': 'FastAPI · Postgres · React · LLM tooling · MCP'
+    },
+    {
+      'title': 'PixelSpark',
+      'description':
+          'On-device AI video studio for creators (Android) to capture, enhance, and publish cinematic clips with real-time GPU pipelines and ffmpeg-kit processing. Companion PixelSpark iOS client delivers native AI-powered media enhancement and export.',
+      'imageUrl':
+          'https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=1200&q=80',
+      'githubUrl': null,
+      'liveUrl': null,
+      'tags': 'Flutter · Android GPU · ffmpeg-kit · iOS client'
     },
   ];
 
@@ -149,12 +184,12 @@ class HomePage extends StatelessWidget {
       backgroundColor: const Color(0xFF05060B),
       body: Stack(
         children: [
-          _ambientBlur(const Color(0xFF7BD6F6),
+          _ambientBlur(const Color(0xFFF5A524),
               offset: const Offset(-120, -80)),
-          _ambientBlur(const Color(0xFF9D7BFF),
+          _ambientBlur(const Color(0xFF6C5DD3),
               offset: Offset(size.width - 120, 120)),
-          _ambientBlur(const Color(0xFF0CF3C5),
-              offset: const Offset(120, size.height * 0.7), blur: 180),
+          _ambientBlur(const Color(0xFF24C8A0),
+              offset: Offset(120, size.height * 0.7), blur: 180),
           SingleChildScrollView(
             padding: EdgeInsets.fromLTRB(
                 horizontalPadding, 48, horizontalPadding, 80),
@@ -201,10 +236,10 @@ class HomePage extends StatelessWidget {
         gradient: const LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [Color(0xFF0D1324), Color(0xFF0A0F1A)],
+          colors: [Color(0xFF0A0C15), Color(0xFF0E1220)],
         ),
         borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: Colors.white.withOpacity(0.05)),
+        border: Border.all(color: const Color(0xFFF5A524).withOpacity(0.08)),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.45),
@@ -214,7 +249,8 @@ class HomePage extends StatelessWidget {
         ],
       ),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment:
+            isWide ? CrossAxisAlignment.center : CrossAxisAlignment.start,
         children: [
           Expanded(
             flex: isWide ? 3 : 5,
@@ -226,9 +262,9 @@ class HomePage extends StatelessWidget {
                         ?.copyWith(fontWeight: FontWeight.w800)),
                 const SizedBox(height: 10),
                 Text(
-                  'Building thoughtful, fast experiences across mobile, web, and backend. Flutter fan, React/Rails fluent, obsessed with clean UX and realtime data.',
+                  'Founder & CEO at PixelEnhance Labs, building an enterprise AI video platform. Full-stack engineer shipping across Python/FastAPI, React/TypeScript, Flutter/Dart, and GPU-accelerated pipelines.',
                   style: textTheme.bodyLarge?.copyWith(
-                    color: Colors.white.withOpacity(0.85),
+                    color: Colors.white.withOpacity(0.9),
                     height: 1.6,
                   ),
                 ),
@@ -237,11 +273,11 @@ class HomePage extends StatelessWidget {
                   spacing: 10,
                   runSpacing: 8,
                   children: [
-                    _pill('Flutter & Dart', colorScheme.primary),
-                    _pill('React / TypeScript', colorScheme.secondary),
-                    _pill('Rails & Postgres', colorScheme.tertiary),
-                    _pill('Realtime UX', Colors.white12),
-                    _pill('Remote · EST', Colors.white12),
+                    _pill('AI Video Platform', Colors.white.withOpacity(0.12)),
+                    _pill('PyTorch + TensorRT', Colors.white.withOpacity(0.12)),
+                    _pill('React / TypeScript', Colors.white.withOpacity(0.12)),
+                    _pill('Flutter / Dart', Colors.white.withOpacity(0.12)),
+                    _pill('Remote · EST', Colors.white.withOpacity(0.12)),
                   ],
                 ),
                 const SizedBox(height: 22),
@@ -371,83 +407,95 @@ class HomePage extends StatelessWidget {
           ? 3
           : (constraints.maxWidth > 800 ? 2 : 1);
       final cardWidth = constraints.maxWidth / columns - 14;
+      final cardHeight = constraints.maxWidth > 1200
+          ? 520.0
+          : (constraints.maxWidth > 800 ? 560.0 : 620.0);
       return Wrap(
         spacing: 14,
         runSpacing: 14,
         children: _projects.map((project) {
           return SizedBox(
             width: cardWidth,
-            child: _glassCard(
-              padding: EdgeInsets.zero,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  AspectRatio(
-                    aspectRatio: 16 / 9,
-                    child: ClipRRect(
-                      borderRadius:
-                          const BorderRadius.vertical(top: Radius.circular(18)),
-                      child: Image.network(
-                        project['imageUrl']!,
-                        fit: BoxFit.cover,
-                        errorBuilder: (_, __, ___) => Container(
-                          color: Colors.white10,
-                          alignment: Alignment.center,
-                          child: const Icon(Icons.broken_image_outlined,
-                              color: Colors.white54),
+            child: SizedBox(
+              height: cardHeight,
+              child: _glassCard(
+                padding: EdgeInsets.zero,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    AspectRatio(
+                      aspectRatio: 16 / 9,
+                      child: ClipRRect(
+                        borderRadius: const BorderRadius.vertical(
+                            top: Radius.circular(18)),
+                        child: Image.network(
+                          project['imageUrl']!,
+                          fit: BoxFit.cover,
+                          errorBuilder: (_, __, ___) => Container(
+                            color: Colors.white10,
+                            alignment: Alignment.center,
+                            child: const Icon(Icons.broken_image_outlined,
+                                color: Colors.white54),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(project['title']!,
-                            style: textTheme.titleMedium
-                                ?.copyWith(fontWeight: FontWeight.w800)),
-                        const SizedBox(height: 8),
-                        Text(
-                          project['description']!,
-                          style: textTheme.bodyMedium
-                              ?.copyWith(color: Colors.white70, height: 1.45),
-                        ),
-                        const SizedBox(height: 10),
-                        if (project['tags'] != null)
-                          Wrap(
-                            spacing: 8,
-                            runSpacing: 6,
-                            children: project['tags']!
-                                .split('·')
-                                .map((t) => _pill(
-                                    t.trim(), Colors.white.withOpacity(0.08)))
-                                .toList(),
-                          ),
-                        const SizedBox(height: 14),
-                        Wrap(
-                          spacing: 10,
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.all(16),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            if (project['githubUrl'] != null)
-                              _linkButton(
-                                context,
-                                label: 'Code',
-                                icon: Icons.code,
-                                onTap: () => _launchURL(project['githubUrl']!),
+                            Text(project['title']!,
+                                style: textTheme.titleMedium
+                                    ?.copyWith(fontWeight: FontWeight.w800)),
+                            const SizedBox(height: 8),
+                            Text(
+                              project['description']!,
+                              maxLines: 4,
+                              overflow: TextOverflow.ellipsis,
+                              style: textTheme.bodyMedium?.copyWith(
+                                  color: Colors.white70, height: 1.45),
+                            ),
+                            const SizedBox(height: 10),
+                            if (project['tags'] != null)
+                              Wrap(
+                                spacing: 8,
+                                runSpacing: 6,
+                                children: project['tags']!
+                                    .split('·')
+                                    .map((t) => _pill(t.trim(),
+                                        Colors.white.withOpacity(0.08)))
+                                    .toList(),
                               ),
-                            if (project['liveUrl'] != null)
-                              _linkButton(
-                                context,
-                                label: 'Live',
-                                icon: Icons.open_in_new_rounded,
-                                onTap: () => _launchURL(project['liveUrl']!),
-                              ),
+                            const Spacer(),
+                            Wrap(
+                              spacing: 10,
+                              children: [
+                                if (project['githubUrl'] != null)
+                                  _linkButton(
+                                    context,
+                                    label: 'Code',
+                                    icon: Icons.code,
+                                    onTap: () =>
+                                        _launchURL(project['githubUrl']!),
+                                  ),
+                                if (project['liveUrl'] != null)
+                                  _linkButton(
+                                    context,
+                                    label: 'Live',
+                                    icon: Icons.open_in_new_rounded,
+                                    onTap: () =>
+                                        _launchURL(project['liveUrl']!),
+                                  ),
+                              ],
+                            )
                           ],
-                        )
-                      ],
+                        ),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           );
@@ -575,9 +623,9 @@ class HomePage extends StatelessWidget {
                   ?.copyWith(fontWeight: FontWeight.w800)),
           const SizedBox(height: 10),
           Text(
-            'Open to product-minded roles, freelance engagements, and collaborations. I care about craft, clear communication, and shipping fast.',
+            'Focused on enterprise AI video products and technical leadership. If you want to ship fast with reliable GPU pipelines, let’s connect.',
             style: textTheme.bodyLarge
-                ?.copyWith(color: Colors.white70, height: 1.55),
+                ?.copyWith(color: Colors.white.withOpacity(0.9), height: 1.55),
           ),
           const SizedBox(height: 16),
           Wrap(
@@ -633,13 +681,18 @@ class HomePage extends StatelessWidget {
       required VoidCallback onTap}) {
     return ElevatedButton.icon(
       onPressed: onTap,
-      icon: Icon(icon, size: 20),
-      label: Text(label, style: const TextStyle(fontWeight: FontWeight.w700)),
+      icon: Icon(icon, size: 20, color: const Color(0xFF0A0C15)),
+      label: Text(label,
+          style: const TextStyle(
+              fontWeight: FontWeight.w700, color: Color(0xFF0A0C15))),
       style: ElevatedButton.styleFrom(
-        backgroundColor: const Color(0xFF7BD6F6),
-        foregroundColor: Colors.black,
+        backgroundColor: const Color(0xFFF5A524),
+        foregroundColor: const Color(0xFF0A0C15),
         padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 14),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+        shadowColor: Colors.black.withOpacity(0.35),
+        elevation: 4,
+        overlayColor: Colors.black.withOpacity(0.05),
       ),
     );
   }
@@ -655,10 +708,11 @@ class HomePage extends StatelessWidget {
           style: const TextStyle(
               fontWeight: FontWeight.w700, color: Colors.white)),
       style: OutlinedButton.styleFrom(
-        side: BorderSide(color: Colors.white.withOpacity(0.25)),
+        side: BorderSide(color: Colors.white.withOpacity(0.65)),
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-        backgroundColor: Colors.white.withOpacity(0.04),
+        backgroundColor: Colors.white.withOpacity(0.08),
+        overlayColor: Colors.white.withOpacity(0.12),
       ),
     );
   }
@@ -689,9 +743,9 @@ class HomePage extends StatelessWidget {
         filter: ImageFilter.blur(sigmaX: 18, sigmaY: 18),
         child: Container(
           decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.04),
+            color: Colors.white.withOpacity(0.06),
             borderRadius: BorderRadius.circular(18),
-            border: Border.all(color: Colors.white.withOpacity(0.06)),
+            border: Border.all(color: Colors.white.withOpacity(0.12)),
           ),
           padding: padding,
           child: child,
