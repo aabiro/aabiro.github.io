@@ -416,87 +416,14 @@ class HomePage extends StatelessWidget {
         children: _projects.map((project) {
           return SizedBox(
             width: cardWidth,
-            child: SizedBox(
-              height: cardHeight,
-              child: _glassCard(
-                padding: EdgeInsets.zero,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    AspectRatio(
-                      aspectRatio: 16 / 9,
-                      child: ClipRRect(
-                        borderRadius: const BorderRadius.vertical(
-                            top: Radius.circular(18)),
-                        child: Image.network(
-                          project['imageUrl']!,
-                          fit: BoxFit.cover,
-                          errorBuilder: (_, __, ___) => Container(
-                            color: Colors.white10,
-                            alignment: Alignment.center,
-                            child: const Icon(Icons.broken_image_outlined,
-                                color: Colors.white54),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(16),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(project['title']!,
-                                style: textTheme.titleMedium
-                                    ?.copyWith(fontWeight: FontWeight.w800)),
-                            const SizedBox(height: 8),
-                            Text(
-                              project['description']!,
-                              maxLines: 4,
-                              overflow: TextOverflow.ellipsis,
-                              style: textTheme.bodyMedium?.copyWith(
-                                  color: Colors.white70, height: 1.45),
-                            ),
-                            const SizedBox(height: 10),
-                            if (project['tags'] != null)
-                              Wrap(
-                                spacing: 8,
-                                runSpacing: 6,
-                                children: project['tags']!
-                                    .split('·')
-                                    .map((t) => _pill(t.trim(),
-                                        Colors.white.withOpacity(0.08)))
-                                    .toList(),
-                              ),
-                            const Spacer(),
-                            Wrap(
-                              spacing: 10,
-                              children: [
-                                if (project['githubUrl'] != null)
-                                  _linkButton(
-                                    context,
-                                    label: 'Code',
-                                    icon: Icons.code,
-                                    onTap: () =>
-                                        _launchURL(project['githubUrl']!),
-                                  ),
-                                if (project['liveUrl'] != null)
-                                  _linkButton(
-                                    context,
-                                    label: 'Live',
-                                    icon: Icons.open_in_new_rounded,
-                                    onTap: () =>
-                                        _launchURL(project['liveUrl']!),
-                                  ),
-                              ],
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+            child: _ProjectCard(
+              project: project,
+              cardHeight: cardHeight,
+              textTheme: textTheme,
+              launchURL: _launchURL,
+              glassCard: _glassCard,
+              pill: _pill,
+              linkButton: _linkButton,
             ),
           );
         }).toList(),
@@ -771,6 +698,141 @@ class HomePage extends StatelessWidget {
               Colors.transparent,
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class _ProjectCard extends StatefulWidget {
+  const _ProjectCard(
+      {required this.project,
+      required this.cardHeight,
+      required this.textTheme,
+      required this.launchURL,
+      required this.glassCard,
+      required this.pill,
+      required this.linkButton});
+
+  final Map<String, String?> project;
+  final double cardHeight;
+  final TextTheme textTheme;
+  final Future<void> Function(String url) launchURL;
+  final Widget Function({required Widget child, EdgeInsetsGeometry padding})
+      glassCard;
+  final Widget Function(String text, Color color) pill;
+  final Widget Function(BuildContext context,
+      {required String label,
+      required IconData icon,
+      required VoidCallback onTap}) linkButton;
+
+  @override
+  State<_ProjectCard> createState() => _ProjectCardState();
+}
+
+class _ProjectCardState extends State<_ProjectCard> {
+  bool expanded = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final desc = widget.project['description'] ?? '';
+    final isLong = desc.length > 180;
+    return ConstrainedBox(
+      constraints: BoxConstraints(minHeight: widget.cardHeight),
+      child: widget.glassCard(
+        padding: EdgeInsets.zero,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            AspectRatio(
+              aspectRatio: 16 / 9,
+              child: ClipRRect(
+                borderRadius:
+                    const BorderRadius.vertical(top: Radius.circular(18)),
+                child: Image.network(
+                  widget.project['imageUrl']!,
+                  fit: BoxFit.cover,
+                  errorBuilder: (_, __, ___) => Container(
+                    color: Colors.white10,
+                    alignment: Alignment.center,
+                    child: const Icon(Icons.broken_image_outlined,
+                        color: Colors.white54),
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(widget.project['title']!,
+                      style: widget.textTheme.titleMedium
+                          ?.copyWith(fontWeight: FontWeight.w800)),
+                  const SizedBox(height: 8),
+                  Text(
+                    desc,
+                    maxLines: expanded ? null : 4,
+                    overflow:
+                        expanded ? TextOverflow.visible : TextOverflow.ellipsis,
+                    style: widget.textTheme.bodyMedium
+                        ?.copyWith(color: Colors.white70, height: 1.45),
+                  ),
+                  const SizedBox(height: 10),
+                  if (widget.project['tags'] != null)
+                    Wrap(
+                      spacing: 8,
+                      runSpacing: 6,
+                      children: widget.project['tags']!
+                          .split('·')
+                          .map((t) => widget.pill(
+                              t.trim(), Colors.white.withOpacity(0.08)))
+                          .toList(),
+                    ),
+                  const SizedBox(height: 12),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: Wrap(
+                          spacing: 10,
+                          runSpacing: 8,
+                          children: [
+                            if (widget.project['githubUrl'] != null)
+                              widget.linkButton(
+                                context,
+                                label: 'Code',
+                                icon: Icons.code,
+                                onTap: () => widget
+                                    .launchURL(widget.project['githubUrl']!),
+                              ),
+                            if (widget.project['liveUrl'] != null)
+                              widget.linkButton(
+                                context,
+                                label: 'Live',
+                                icon: Icons.open_in_new_rounded,
+                                onTap: () => widget
+                                    .launchURL(widget.project['liveUrl']!),
+                              ),
+                          ],
+                        ),
+                      ),
+                      if (isLong)
+                        TextButton(
+                          onPressed: () => setState(() => expanded = !expanded),
+                          child: Text(
+                            expanded ? 'Show less' : 'Show more',
+                            style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w700),
+                          ),
+                        ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );
