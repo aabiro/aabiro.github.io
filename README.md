@@ -3,8 +3,9 @@
 Professional Flutter web portfolio for Aaryn Biro.
 
 `flutter build web --release`
-`firebase deploy`
+
+Deployment to GitHub Pages runs automatically through GitHub Actions when changes are pushed to `main`.
 
 Check out the live site at:
 
-[https://aabiro-github-io.web.app/](https://aabiro-github-io.web.app/)
+[https://aabiro.github.io/](https://aabiro.github.io/)

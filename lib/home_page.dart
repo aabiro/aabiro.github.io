@@ -57,7 +57,7 @@ class _HomePageState extends State<HomePage> {
       title: 'Xcelsior distributed compute platform',
       kicker: '2025 - Present',
       summary:
-          'A secure GPU workload orchestration platform spanning public APIs, scheduler logic, worker coordination, billing workflows, and developer tooling.',
+          'A secure GPU workload orchestration platform spanning public APIs, scheduler logic, worker coordination, billing workflows, Next.js interfaces, and developer tooling.',
       outcomes: [
         'Designed admission-gated workers, private mesh networking, container isolation, and audit-oriented event handling.',
         'Built modular backend and Next.js interfaces across routing, scheduling, billing, privacy, persistence, CI, and deployment paths.',
@@ -139,7 +139,7 @@ class _HomePageState extends State<HomePage> {
         _Capability('Mobile execution',
             'Flutter, Dart, SwiftUI, Android workflows, state management, async APIs, and release readiness.'),
         _Capability('Frontend systems',
-            'React, TypeScript, responsive UX, customer workflows, admin surfaces, and data-heavy product screens.'),
+            'React, Next.js, TypeScript, responsive UX, customer workflows, admin surfaces, and data-heavy product screens.'),
         _Capability('User-critical flows',
             'Membership, rewards, sign-in, verification, onboarding, and verification-heavy product paths.'),
       ],
@@ -166,8 +166,8 @@ class _HomePageState extends State<HomePage> {
       period: '2025 - Present',
       place: 'London, ON / Remote',
       summary:
-          'Building a distributed compute platform for GPU workload orchestration, secure worker admission, scheduling, billing, and developer tooling.',
-      tags: ['Distributed systems', 'GPU compute', 'Secure workers', 'Billing'],
+          'Building a distributed compute platform for GPU workload orchestration, secure worker admission, scheduling, billing, Next.js interfaces, and developer tooling.',
+      tags: ['Distributed systems', 'GPU compute', 'Secure workers', 'Next.js'],
     ),
     _ExperienceItem(
       role: 'Founder and Principal Engineer',
