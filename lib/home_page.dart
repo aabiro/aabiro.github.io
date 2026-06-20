@@ -166,8 +166,8 @@ class _HomePageState extends State<HomePage> {
       period: '2025 - Present',
       place: 'London, ON / Remote',
       summary:
-          'Building a distributed compute platform for GPU workload orchestration, secure worker admission, scheduling, billing, and developer tooling.',
-      tags: ['Distributed systems', 'GPU compute', 'Secure workers', 'Billing'],
+          'Building a distributed compute platform for GPU workload orchestration, secure worker admission, scheduling, billing, Next.js interfaces, and developer tooling.',
+      tags: ['Distributed systems', 'GPU compute', 'Secure workers', 'Next.js'],
     ),
     _ExperienceItem(
       role: 'Founder and Principal Engineer',
