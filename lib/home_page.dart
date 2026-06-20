@@ -60,7 +60,7 @@ class _HomePageState extends State<HomePage> {
           'A secure GPU workload orchestration platform spanning public APIs, scheduler logic, worker coordination, billing workflows, and developer tooling.',
       outcomes: [
         'Designed admission-gated workers, private mesh networking, container isolation, and audit-oriented event handling.',
-        'Built modular backend services across routing, scheduling, billing, privacy, persistence, CI, and deployment paths.',
+        'Built modular backend and Next.js interfaces across routing, scheduling, billing, privacy, persistence, CI, and deployment paths.',
         'Created production-minded tooling for multi-node operations instead of one-off scripts.',
       ],
       tags: [
@@ -68,6 +68,7 @@ class _HomePageState extends State<HomePage> {
         'Secure APIs',
         'Schedulers',
         'Billing',
+        'Next.js',
         'Developer tools'
       ],
       accent: _green,
@@ -237,6 +238,7 @@ class _HomePageState extends State<HomePage> {
       title: 'Frontend and mobile',
       skills: [
         'React',
+        'Next.js',
         'TypeScript',
         'SwiftUI',
         'Flutter',
@@ -425,7 +427,7 @@ class _HomePageState extends State<HomePage> {
         ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 760),
           child: Text(
-            'Founder and principal engineer building GPU compute platforms, AI media systems, and production-grade product experiences.',
+            'Founder and principal engineer building GPU compute platforms, Next.js interfaces, AI media systems, and production-grade experiences.',
             style: textTheme.headlineSmall?.copyWith(
               color: _ink,
               height: 1.22,
@@ -482,7 +484,7 @@ class _HomePageState extends State<HomePage> {
           runSpacing: 9,
           children: [
             _Tag('GPU orchestration'),
-            _Tag('FastAPI / React'),
+            _Tag('FastAPI / Next.js'),
             _Tag('Flutter / SwiftUI'),
             _Tag('Docker / Nginx'),
             _Tag('London, ON'),
