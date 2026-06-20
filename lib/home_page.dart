@@ -60,7 +60,7 @@ class _HomePageState extends State<HomePage> {
           'A secure GPU workload orchestration platform spanning public APIs, scheduler logic, worker coordination, billing workflows, and developer tooling.',
       outcomes: [
         'Designed admission-gated workers, private mesh networking, container isolation, and audit-oriented event handling.',
-        'Built modular backend and Next.js surfaces across routing, scheduling, billing, privacy, persistence, CI, and deployment paths.',
+        'Built modular backend and Next.js interfaces across routing, scheduling, billing, privacy, persistence, CI, and deployment paths.',
         'Created production-minded tooling for multi-node operations instead of one-off scripts.',
       ],
       tags: [
@@ -427,7 +427,7 @@ class _HomePageState extends State<HomePage> {
         ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 760),
           child: Text(
-            'Founder and principal engineer building GPU compute platforms, Next.js product surfaces, AI media systems, and production-grade experiences.',
+            'Founder and principal engineer building GPU compute platforms, Next.js interfaces, AI media systems, and production-grade experiences.',
             style: textTheme.headlineSmall?.copyWith(
               color: _ink,
               height: 1.22,
