@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
 
+# LLM/agent context: https://llmstxt.org
+# https://aabiro.github.io/llms.txt
+
 Sitemap: https://aabiro.github.io/sitemap.xml

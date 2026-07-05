@@ -26,7 +26,19 @@ jobs:
       - run: flutter pub get
       - run: flutter analyze
       - run: flutter test
+      - name: Sync agent-readable assets (L6)
+        run: bash scripts/sync_agent_assets.sh
+      - name: Build resume PDF from RESUME.md
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq pandoc wkhtmltopdf || true
+          bash scripts/build_resume_pdf.sh
       - run: flutter build web --release --base-href /
+      - name: Verify agent assets in build output
+        run: |
+          test -f build/web/llms.txt
+          test -f build/web/.well-known/agent.json
+          test -f build/web/assets/assets/Aaryn_Biro_Resume.pdf
       - uses: actions/upload-pages-artifact@v3
         if: github.event_name != 'pull_request'
         with:

@@ -37,6 +37,22 @@ The built site should contain the same PDF at:
 
 `build/web/assets/assets/Aaryn_Biro_Resume.pdf`
 
+## Agent-ready metadata (L6)
+
+Dual-audience portfolio for humans and LLM agents (see `pxl-registry` S5 L6):
+
+| Asset | Path | Live URL |
+|-------|------|----------|
+| `llms.txt` | repo root → `web/llms.txt` | https://aabiro.github.io/llms.txt |
+| Agent manifest | `.well-known/agent.json` | https://aabiro.github.io/.well-known/agent.json |
+| JSON-LD | `web/index.html` | Person + CreativeWork `@graph` |
+| Resume source | `RESUME.md` | built to `assets/Aaryn_Biro_Resume.pdf` in CI |
+
+Before each web build, `scripts/sync_agent_assets.sh` copies agent files into `web/`.
+`scripts/build_resume_pdf.sh` regenerates the PDF from `RESUME.md` when pandoc is available.
+
+Quarterly GitHub contribution stats: `.github/workflows/resume-quarterly.yml`.
+
 ## Deployment
 
 Deployment to GitHub Pages runs automatically through GitHub Actions when changes are pushed to `main`.

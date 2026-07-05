@@ -1,0 +1,98 @@
+# Aaryn Biro — Portfolio (LLM-Optimized)
+# https://aabiro.github.io/
+# See https://llmstxt.org for the llms.txt convention
+
+> Aaryn Biro is a founder and principal engineer building GPU compute
+> orchestration, AI media pipelines, Next.js interfaces, and production-grade
+> mobile and backend systems. Based in London, ON (Eastern time), remote-friendly.
+
+## Identity
+
+- **Name**: Aaryn Biro
+- **Title**: Principal Engineer & Founder
+- **Site**: https://aabiro.github.io/
+- **GitHub**: https://github.com/aabiro
+- **LinkedIn**: https://www.linkedin.com/in/aabiro/
+- **Email**: aaryn.alexander@gmail.com
+- **Availability**: Select builds — GPU platforms, AI media, backend, mobile, infra
+- **Resume PDF**: https://aabiro.github.io/assets/assets/Aaryn_Biro_Resume.pdf
+
+## Contact policy
+
+Email is appropriate for substantive project conversations: architecture reviews,
+founding-engineer roles, GPU/AI media builds, and partnership discussions.
+Do not use this channel for generic recruiting blasts or unsolicited sales outreach.
+
+## Primary projects
+
+### Xcelsior (distributed GPU compute)
+
+Canadian-first GPU workload orchestration: admission-gated workers, private mesh
+networking, container isolation, scheduling, billing, Stripe Connect marketplace,
+PIPEDA-oriented privacy controls, and developer-facing APIs.
+
+- **Site**: https://xcelsior.ca
+- **Stack**: Python 3.12, FastAPI, PostgreSQL, Headscale mesh, Docker + gVisor
+- **Agent docs**: https://xcelsior.ca/llms.txt
+- **MCP**: https://xcelsior.ca/mcp (Streamable HTTP, OAuth bearer tokens)
+- **Roles**: GPU orchestration, secure workers, spot pricing, serverless inference
+
+### PixelEnhance Labs (AI media platform)
+
+AI media enhancement platform: async GPU jobs, model registry, hybrid cloud routing,
+FastAPI services, React admin surfaces, Celery workers, TensorRT/PyTorch inference.
+
+- **Focus**: Video upscaling, denoise, interpolation, diffusion pipelines
+- **Stack**: FastAPI, PostgreSQL, Redis, Celery, React, Docker, Nginx, Linux
+- **Registry**: pxl-registry (763+ models, ONNX/CoreML/TensorRT variants)
+
+### Portfolio site (this repo)
+
+Flutter web portfolio with downloadable resume, structured metadata for agents,
+and GitHub Pages deployment.
+
+- **Repo**: https://github.com/aabiro/aabiro.github.io
+- **Stack**: Flutter, Dart, Firebase (optional), GitHub Actions → GitHub Pages
+
+## Capability areas
+
+| Lens | Focus |
+|------|-------|
+| Platform | Admission/trust boundaries, schedulers, queues, billing, developer tooling |
+| AI Media | PyTorch, TensorRT, FFmpeg, inference pipelines, GPU orchestration |
+| Product Apps | Flutter, SwiftUI, React, Next.js, TypeScript, mobile release workflows |
+| Delivery | CI/CD, Docker, Linux, Nginx, observability, technical leadership |
+
+## Technical stack (summary)
+
+**Backend**: Python, FastAPI, Node.js, PostgreSQL, Redis, MongoDB, REST APIs,
+background jobs, service-oriented architecture
+
+**AI / media**: PyTorch, TensorRT, FFmpeg, model benchmarking, inference pipelines,
+GPU orchestration, video enhancement
+
+**Frontend / mobile**: React, Next.js, TypeScript, SwiftUI, Flutter, Dart, Kotlin
+
+**Infrastructure**: Docker, Linux, Nginx, AWS, Firebase, CI/CD, observability,
+cloud deployment
+
+## Experience highlights
+
+- **Xcelsior** — Founder & Principal Engineer (2025–present): distributed compute,
+  secure worker admission, scheduling, billing, Next.js interfaces
+- **PixelEnhance Labs** — Founder & Principal Engineer (2024–present): AI media
+  platform, async processing, deployment automation, observability
+- **Snappy Inc.** — Software Developer (2023): iOS/Android product features
+- **Neurolign Technologies** — Software Developer (2021–2022): Flutter, APIs,
+  monitoring, Node.js/React
+- **realxdata GmbH** — Full-stack SaaS (2018–2019): data workflows, AWS, CI quality
+
+## Agent machine-readable endpoints
+
+- `GET /llms.txt` — this file (human + LLM context)
+- `GET /.well-known/agent.json` — structured portfolio manifest (projects, contact policy)
+- Resume: `/assets/assets/Aaryn_Biro_Resume.pdf`
+
+## Structured data
+
+Schema.org `Person` and `CreativeWork` JSON-LD are embedded in `index.html`.

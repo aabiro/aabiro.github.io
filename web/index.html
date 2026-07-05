@@ -71,14 +71,76 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Aaryn Biro",
-    "url": "https://aabiro.github.io/",
-    "jobTitle": "Principal Engineer & Founder",
-    "description": "Principal engineer and founder specializing in GPU compute orchestration, AI media pipelines, backend systems, and product engineering.",
-    "sameAs": [
-      "https://github.com/aabiro",
-      "https://www.linkedin.com/in/aabiro/"
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://aabiro.github.io/#person",
+        "name": "Aaryn Biro",
+        "url": "https://aabiro.github.io/",
+        "jobTitle": "Principal Engineer & Founder",
+        "email": "mailto:aaryn.alexander@gmail.com",
+        "description": "Principal engineer and founder specializing in GPU compute orchestration, AI media pipelines, backend systems, and product engineering.",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "London",
+          "addressRegion": "ON",
+          "addressCountry": "CA"
+        },
+        "sameAs": [
+          "https://github.com/aabiro",
+          "https://www.linkedin.com/in/aabiro/"
+        ],
+        "knowsAbout": [
+          "GPU compute orchestration",
+          "AI media pipelines",
+          "FastAPI",
+          "Next.js",
+          "Flutter",
+          "Distributed systems"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://aabiro.github.io/#website",
+        "url": "https://aabiro.github.io/",
+        "name": "Aaryn Biro Portfolio",
+        "description": "Professional portfolio for Aaryn Biro — principal engineer and founder.",
+        "publisher": { "@id": "https://aabiro.github.io/#person" },
+        "inLanguage": "en"
+      },
+      {
+        "@type": "CreativeWork",
+        "@id": "https://aabiro.github.io/#xcelsior",
+        "name": "Xcelsior",
+        "url": "https://xcelsior.ca",
+        "description": "Distributed GPU workload orchestration platform with secure worker admission, scheduling, billing, and Canadian data sovereignty.",
+        "creator": { "@id": "https://aabiro.github.io/#person" },
+        "keywords": ["GPU orchestration", "FastAPI", "PostgreSQL", "marketplace", "PIPEDA"],
+        "dateCreated": "2025"
+      },
+      {
+        "@type": "CreativeWork",
+        "@id": "https://aabiro.github.io/#pixelenhance",
+        "name": "PixelEnhance Labs",
+        "description": "AI media enhancement platform with async GPU jobs, model registry, and hybrid cloud routing.",
+        "creator": { "@id": "https://aabiro.github.io/#person" },
+        "keywords": ["AI media", "FastAPI", "PyTorch", "TensorRT", "video enhancement"],
+        "dateCreated": "2024"
+      },
+      {
+        "@type": "CreativeWork",
+        "@id": "https://aabiro.github.io/#portfolio",
+        "name": "Aaryn Biro Portfolio",
+        "url": "https://aabiro.github.io/",
+        "description": "Flutter web portfolio with agent-ready documentation and downloadable resume.",
+        "creator": { "@id": "https://aabiro.github.io/#person" },
+        "encoding": {
+          "@type": "MediaObject",
+          "contentUrl": "https://aabiro.github.io/assets/assets/Aaryn_Biro_Resume.pdf",
+          "encodingFormat": "application/pdf",
+          "name": "Aaryn Biro Resume"
+        }
+      }
     ]
   }
   </script>

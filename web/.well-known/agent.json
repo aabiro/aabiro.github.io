@@ -1,0 +1,75 @@
+{
+  "schema_version": "1.0",
+  "name": "Aaryn Biro Portfolio",
+  "description": "Founder and principal engineer portfolio — GPU compute orchestration, AI media pipelines, Next.js interfaces, Flutter mobile, and production infrastructure.",
+  "url": "https://aabiro.github.io/",
+  "llms_txt": "https://aabiro.github.io/llms.txt",
+  "updated": "2026-07-04",
+  "person": {
+    "name": "Aaryn Biro",
+    "job_title": "Principal Engineer & Founder",
+    "location": "London, ON, Canada",
+    "timezone": "America/Toronto",
+    "email": "aaryn.alexander@gmail.com",
+    "github": "https://github.com/aabiro",
+    "linkedin": "https://www.linkedin.com/in/aabiro/",
+    "availability": "select_builds"
+  },
+  "contact_policy": {
+    "preferred": "email",
+    "email": "aaryn.alexander@gmail.com",
+    "acceptable": [
+      "architecture_and_platform_builds",
+      "founding_engineer_roles",
+      "gpu_and_ai_media_partnerships",
+      "substantive_technical_conversations"
+    ],
+    "decline": [
+      "generic_recruiting_blasts",
+      "unsolicited_sales_outreach"
+    ]
+  },
+  "projects": [
+    {
+      "name": "Xcelsior",
+      "role": "founder",
+      "url": "https://xcelsior.ca",
+      "llms_txt": "https://xcelsior.ca/llms.txt",
+      "mcp": "https://xcelsior.ca/mcp",
+      "summary": "Distributed GPU workload orchestration with Canadian data sovereignty, marketplace billing, and secure worker admission.",
+      "stack": ["Python", "FastAPI", "PostgreSQL", "Headscale", "Docker", "gVisor", "Next.js"]
+    },
+    {
+      "name": "PixelEnhance Labs",
+      "role": "founder",
+      "summary": "AI media enhancement platform with async GPU jobs, model registry, hybrid cloud routing, and TensorRT/PyTorch inference.",
+      "stack": ["FastAPI", "PostgreSQL", "Redis", "Celery", "React", "PyTorch", "TensorRT", "Docker", "Nginx"]
+    },
+    {
+      "name": "pxl-registry",
+      "role": "maintainer",
+      "url": "https://github.com/aabiro/pxl-registry",
+      "summary": "Canonical model registry for PixelEnhance — 763+ models with ONNX, CoreML, TensorRT, and B2 cold-archive variants.",
+      "stack": ["Python", "YAML", "ONNX", "CoreML", "Backblaze B2"]
+    },
+    {
+      "name": "aabiro.github.io",
+      "role": "author",
+      "url": "https://aabiro.github.io/",
+      "repo": "https://github.com/aabiro/aabiro.github.io",
+      "summary": "Flutter web portfolio with agent-ready llms.txt and structured metadata.",
+      "stack": ["Flutter", "Dart", "GitHub Pages"]
+    }
+  ],
+  "capabilities": [
+    "gpu_orchestration",
+    "ai_media_pipelines",
+    "fastapi_backend",
+    "nextjs_frontend",
+    "flutter_mobile",
+    "docker_deployment",
+    "ci_cd",
+    "technical_leadership"
+  ],
+  "resume_pdf": "https://aabiro.github.io/assets/assets/Aaryn_Biro_Resume.pdf"
+}

@@ -1,0 +1,39 @@
+name: Quarterly resume stats
+
+on:
+  schedule:
+    # 09:00 UTC on the 1st of Jan, Apr, Jul, Oct
+    - cron: "0 9 1 1,4,7,10 *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  stats:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Fetch GitHub contribution stats
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 scripts/fetch_github_stats.py
+      - name: Rebuild resume PDF
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq pandoc wkhtmltopdf || true
+          bash scripts/build_resume_pdf.sh
+      - name: Commit updated resume and stats
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add RESUME.md assets/github_stats.json assets/Aaryn_Biro_Resume.pdf || true
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore: quarterly GitHub stats and resume PDF refresh"
+            git push
+          fi
