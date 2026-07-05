@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "name": "Aaryn Biro Portfolio",
-  "description": "Founder and principal engineer portfolio — GPU compute orchestration, AI media pipelines, Next.js interfaces, Flutter mobile, and production infrastructure.",
+  "description": "Founder and principal engineer portfolio - GPU compute orchestration, AI media pipelines, Next.js interfaces, Flutter mobile, and production infrastructure.",
   "url": "https://aabiro.github.io/",
   "llms_txt": "https://aabiro.github.io/llms.txt",
   "updated": "2026-07-04",
@@ -49,7 +49,7 @@
       "name": "pxl-registry",
       "role": "maintainer",
       "url": "https://github.com/aabiro/pxl-registry",
-      "summary": "Canonical model registry for PixelEnhance — 763+ models with ONNX, CoreML, TensorRT, and B2 cold-archive variants.",
+      "summary": "Canonical model registry for PixelEnhance - 763+ models with ONNX, CoreML, TensorRT, and B2 cold-archive variants.",
       "stack": ["Python", "YAML", "ONNX", "CoreML", "Backblaze B2"]
     },
     {

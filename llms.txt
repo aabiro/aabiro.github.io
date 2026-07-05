@@ -1,4 +1,4 @@
-# Aaryn Biro — Portfolio (LLM-Optimized)
+# Aaryn Biro - Portfolio (LLM-Optimized)
 # https://aabiro.github.io/
 # See https://llmstxt.org for the llms.txt convention
 
@@ -14,7 +14,7 @@
 - **GitHub**: https://github.com/aabiro
 - **LinkedIn**: https://www.linkedin.com/in/aabiro/
 - **Email**: aaryn.alexander@gmail.com
-- **Availability**: Select builds — GPU platforms, AI media, backend, mobile, infra
+- **Availability**: Select builds - GPU platforms, AI media, backend, mobile, infra
 - **Resume PDF**: https://aabiro.github.io/assets/assets/Aaryn_Biro_Resume.pdf
 
 ## Contact policy
@@ -78,19 +78,19 @@ cloud deployment
 
 ## Experience highlights
 
-- **Xcelsior** — Founder & Principal Engineer (2025–present): distributed compute,
+- **Xcelsior** - Founder & Principal Engineer (2025-present): distributed compute,
   secure worker admission, scheduling, billing, Next.js interfaces
-- **PixelEnhance Labs** — Founder & Principal Engineer (2024–present): AI media
+- **PixelEnhance Labs** - Founder & Principal Engineer (2024-present): AI media
   platform, async processing, deployment automation, observability
-- **Snappy Inc.** — Software Developer (2023): iOS/Android product features
-- **Neurolign Technologies** — Software Developer (2021–2022): Flutter, APIs,
+- **Snappy Inc.** - Software Developer (2023): iOS/Android product features
+- **Neurolign Technologies** - Software Developer (2021-2022): Flutter, APIs,
   monitoring, Node.js/React
-- **realxdata GmbH** — Full-stack SaaS (2018–2019): data workflows, AWS, CI quality
+- **realxdata GmbH** - Full-stack SaaS (2018-2019): data workflows, AWS, CI quality
 
 ## Agent machine-readable endpoints
 
-- `GET /llms.txt` — this file (human + LLM context)
-- `GET /.well-known/agent.json` — structured portfolio manifest (projects, contact policy)
+- `GET /llms.txt` - this file (human + LLM context)
+- `GET /.well-known/agent.json` - structured portfolio manifest (projects, contact policy)
 - Resume: `/assets/assets/Aaryn_Biro_Resume.pdf`
 
 ## Structured data
