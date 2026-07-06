@@ -6,6 +6,7 @@ Twitter / JSON-LD). This rewrites that head with the portfolio's full metadata
 so serving the HTML does not regress the SEO / agent-readiness work. Runs as
 part of scripts/build_site.sh; safe to re-run (idempotent on a fresh export).
 """
+import json
 import sys
 
 SEO_HEAD = """<title>Aaryn Biro - Principal Engineer &amp; Founder</title>
@@ -135,6 +136,50 @@ SEO_HEAD = """<title>Aaryn Biro - Principal Engineer &amp; Founder</title>
   </script>"""
 
 
+RUNTIME_HEAD = SEO_HEAD.replace(
+    '  <meta name="viewport" content="width=device-width, initial-scale=1.0">\n\n',
+    "",
+)
+
+
+def _js_html_literal(value: str) -> str:
+    return json.dumps(value).replace("</", "<\\/")
+
+
+def _preserve_head_in_bundled_template(html: str) -> str:
+    """Carry SEO/PWA head tags into the document created by the page bundler."""
+    if 'script type="__bundler/template"' not in html:
+        return html
+    if "const persistentHead =" in html:
+        return html
+
+    resource_marker = r"""    const resourceScript = '<script>window.__resources = ' +
+      JSON.stringify(resourceMap).split('</' + 'script>').join('<\\/' + 'script>') +
+      ';</' + 'script>';
+"""
+    if resource_marker not in html:
+        sys.exit("inject_seo: expected bundled resource script marker not found")
+
+    html = html.replace(
+        resource_marker,
+        f"    const persistentHead = {_js_html_literal(RUNTIME_HEAD)};\n"
+        f"{resource_marker}",
+        1,
+    )
+
+    insertion_marker = (
+        "      template = template.slice(0, i) + resourceScript + template.slice(i);"
+    )
+    if insertion_marker not in html:
+        sys.exit("inject_seo: expected bundled head insertion marker not found")
+
+    return html.replace(
+        insertion_marker,
+        "      template = template.slice(0, i) + persistentHead + resourceScript + template.slice(i);",
+        1,
+    )
+
+
 def main(src: str, dst: str) -> None:
     with open(src, "r", encoding="utf-8") as fh:
         html = fh.read()
@@ -150,6 +195,7 @@ def main(src: str, dst: str) -> None:
 
     # Set the document language for accessibility / SEO.
     html = html.replace("<html>\n", '<html lang="en">\n', 1)
+    html = _preserve_head_in_bundled_template(html)
 
     with open(dst, "w", encoding="utf-8") as fh:
         fh.write(html)
