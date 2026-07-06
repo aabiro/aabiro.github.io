@@ -4,6 +4,7 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'github_contributions.dart';
 import 'resume_download.dart';
 
 const _ink = Color(0xFF111312);
@@ -31,6 +32,7 @@ class _HomePageState extends State<HomePage> {
   final _scrollController = ScrollController();
   final _sectionKeys = <String, GlobalKey>{
     'Work': GlobalKey(),
+    'GitHub': GlobalKey(),
     'Systems': GlobalKey(),
     'Experience': GlobalKey(),
     'Stack': GlobalKey(),
@@ -363,6 +365,8 @@ class _HomePageState extends State<HomePage> {
                               _sectionAnchor('Work',
                                   _workSection(context, isDesktop: isDesktop)),
                               const SizedBox(height: 82),
+                              _sectionAnchor('GitHub', _githubSection(context)),
+                              const SizedBox(height: 82),
                               _sectionAnchor(
                                   'Systems',
                                   _systemsSection(context,
@@ -599,6 +603,22 @@ class _HomePageState extends State<HomePage> {
             );
           },
         ),
+      ],
+    );
+  }
+
+  Widget _githubSection(BuildContext context) {
+    return const Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _SectionHeader(
+          eyebrow: 'GitHub activity',
+          title: 'Shipping in public.',
+          body:
+              'Real commit history, pulled live from GitHub. Every square is a day of shipped work since April 2025 across Xcelsior, PixelEnhance, and the systems around them.',
+        ),
+        SizedBox(height: 24),
+        GithubContributionsCard(),
       ],
     );
   }

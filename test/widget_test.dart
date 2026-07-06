@@ -20,11 +20,9 @@ void main() {
     expect(find.text('Aaryn Biro'), findsWidgets);
     expect(find.text('Download resume'), findsOneWidget);
     expect(find.text('Xcelsior distributed compute platform'), findsOneWidget);
+    expect(find.text('Shipping in public.'), findsOneWidget);
 
-    await tester.drag(
-      find.byType(SingleChildScrollView).first,
-      const Offset(0, -1800),
-    );
+    await tester.tap(find.text('Systems').first);
     await tester.pumpAndSettle();
     await tester.tap(find.text('AI Media').last);
     await tester.pumpAndSettle();
