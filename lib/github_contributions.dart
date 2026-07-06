@@ -25,6 +25,7 @@ const _levelColors = [
 const _cellSize = 11.0;
 const _cellGap = 3.0;
 const _cellPitch = _cellSize + _cellGap;
+const _labelTrailingPad = 30.0;
 
 const _monthNames = [
   'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
@@ -319,9 +320,12 @@ class _ContributionGraphState extends State<_ContributionGraph> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(
-                          width: gridWidth,
+                          // Trailing room so the final month label (e.g. the
+                          // current partial month) is not clipped by the Stack.
+                          width: gridWidth + _labelTrailingPad,
                           height: 16,
                           child: Stack(
+                            clipBehavior: Clip.none,
                             children: [
                               for (final label in monthLabels)
                                 Positioned(
