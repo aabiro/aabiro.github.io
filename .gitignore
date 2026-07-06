@@ -31,6 +31,9 @@ migrate_working_dir/
 .pub/
 /build/
 
+# Generated static deploy directory (assembled by scripts/build_site.sh)
+/site/
+
 # Symbolication related
 app.*.symbols
 

@@ -19,30 +19,29 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: subosito/flutter-action@v2
+      - uses: actions/setup-python@v5
         with:
-          channel: stable
-          cache: true
-      - run: flutter pub get
-      - run: flutter analyze
-      - run: flutter test
-      - name: Sync agent-readable assets (L6)
-        run: bash scripts/sync_agent_assets.sh
+          python-version: "3.12"
       - name: Build resume PDF from RESUME.md
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y -qq pandoc wkhtmltopdf || true
           bash scripts/build_resume_pdf.sh
-      - run: flutter build web --release --base-href /
-      - name: Verify agent assets in build output
+      - name: Assemble static site (page + SEO assets + resume)
+        run: bash scripts/build_site.sh
+      - name: Verify site output
         run: |
-          test -f build/web/llms.txt
-          test -f build/web/.well-known/agent.json
-          test -f build/web/assets/assets/Aaryn_Biro_Resume.pdf
+          test -f site/index.html
+          test -f site/llms.txt
+          test -f site/.well-known/agent.json
+          test -f site/assets/Aaryn_Biro_Resume.pdf
+          test -f site/favicon.png
+          grep -q 'application/ld+json' site/index.html
+          grep -q 'og:image' site/index.html
       - uses: actions/upload-pages-artifact@v3
         if: github.event_name != 'pull_request'
         with:
-          path: build/web
+          path: site
 
   deploy:
     if: github.event_name != 'pull_request'
