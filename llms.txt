@@ -15,7 +15,7 @@
 - **LinkedIn**: https://www.linkedin.com/in/aabiro/
 - **Email**: aaryn.alexander@gmail.com
 - **Availability**: Select builds - GPU platforms, AI media, backend, mobile, infra
-- **Resume PDF**: https://aabiro.github.io/assets/assets/Aaryn_Biro_Resume.pdf
+- **Resume PDF**: https://aabiro.github.io/assets/Aaryn_Biro_Resume.pdf
 
 ## Contact policy
 
@@ -48,11 +48,11 @@ FastAPI services, React admin surfaces, Celery workers, TensorRT/PyTorch inferen
 
 ### Portfolio site (this repo)
 
-Flutter web portfolio with downloadable resume, structured metadata for agents,
+Static HTML portfolio with downloadable resume, structured metadata for agents,
 and GitHub Pages deployment.
 
 - **Repo**: https://github.com/aabiro/aabiro.github.io
-- **Stack**: Flutter, Dart, Firebase (optional), GitHub Actions → GitHub Pages
+- **Stack**: HTML, CSS, JavaScript, Python build scripts, GitHub Actions → GitHub Pages
 
 ## Capability areas
 
@@ -91,7 +91,7 @@ cloud deployment
 
 - `GET /llms.txt` - this file (human + LLM context)
 - `GET /.well-known/agent.json` - structured portfolio manifest (projects, contact policy)
-- Resume: `/assets/assets/Aaryn_Biro_Resume.pdf`
+- Resume: `/assets/Aaryn_Biro_Resume.pdf`
 
 ## Structured data
 

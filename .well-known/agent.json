@@ -4,7 +4,7 @@
   "description": "Founder and principal engineer portfolio - GPU compute orchestration, AI media pipelines, Next.js interfaces, Flutter mobile, and production infrastructure.",
   "url": "https://aabiro.github.io/",
   "llms_txt": "https://aabiro.github.io/llms.txt",
-  "updated": "2026-07-04",
+  "updated": "2026-10-05",
   "person": {
     "name": "Aaryn Biro",
     "job_title": "Principal Engineer & Founder",
@@ -57,8 +57,8 @@
       "role": "author",
       "url": "https://aabiro.github.io/",
       "repo": "https://github.com/aabiro/aabiro.github.io",
-      "summary": "Flutter web portfolio with agent-ready llms.txt and structured metadata.",
-      "stack": ["Flutter", "Dart", "GitHub Pages"]
+      "summary": "Static HTML portfolio with agent-ready llms.txt and structured metadata.",
+      "stack": ["HTML", "CSS", "JavaScript", "GitHub Pages"]
     }
   ],
   "capabilities": [
@@ -71,5 +71,5 @@
     "ci_cd",
     "technical_leadership"
   ],
-  "resume_pdf": "https://aabiro.github.io/assets/assets/Aaryn_Biro_Resume.pdf"
+  "resume_pdf": "https://aabiro.github.io/assets/Aaryn_Biro_Resume.pdf"
 }
