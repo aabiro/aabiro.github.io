@@ -1,32 +1,51 @@
 name: Deploy to GitHub Pages
 
+# GitHub-hosted runners are blocked at the account level, so this runs on the
+# sandboxed self-hosted runner from aabiro/xcelsior (scripts/ci-runner/). Start
+# it for this repository from the xcelsior checkout:
+#
+#     XCELSIOR_CI_REPO=aabiro/aabiro.github.io ./scripts/ci-runner/run-runner.sh
+#
+# That runner is ephemeral: it serves one job and exits, so build and deploy are
+# a single job. A push with no runner up waits in the queue until one starts.
+#
+# No pull_request trigger, deliberately. This repository is public, and a
+# pull_request trigger on a self-hosted runner lets anyone's pull request run
+# code on it. Pushing to main needs write access, which a fork does not have.
+
 on:
   push:
     branches:
       - main
-  pull_request:
   workflow_dispatch:
 
 permissions:
   contents: read
 
 concurrency:
-  group: pages-${{ github.ref }}
+  group: pages
   cancel-in-progress: false
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  deploy:
+    runs-on: [self-hosted, sandboxed]
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
       - name: Build resume PDF from RESUME.md
-        run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y -qq pandoc wkhtmltopdf || true
-          bash scripts/build_resume_pdf.sh
+        # The runner image has no pandoc and no sudo, so this keeps the
+        # committed PDF exported from the DOCX template.
+        run: bash scripts/build_resume_pdf.sh
       - name: Assemble static site (page + SEO assets + resume)
         run: bash scripts/build_site.sh
       - name: Verify site output
@@ -40,22 +59,9 @@ jobs:
           grep -q 'og:image' site/index.html
           grep -q 'id="static-profile"' site/index.html
           if grep -q 'Unpacking\.\.\.' site/index.html; then echo "index.html still serves the bare loader"; exit 1; fi
+      - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
-        if: github.event_name != 'pull_request'
         with:
           path: site
-
-  deploy:
-    if: github.event_name != 'pull_request'
-    needs: build
-    runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - uses: actions/configure-pages@v5
       - id: deployment
         uses: actions/deploy-pages@v4

@@ -67,7 +67,22 @@ Quarterly GitHub contribution stats: `.github/workflows/resume-quarterly.yml`.
 
 ## Deployment
 
-Deployment to GitHub Pages runs automatically through GitHub Actions when changes are pushed to `main`.
+Deployment to GitHub Pages runs through GitHub Actions when changes are pushed to `main`.
+
+GitHub-hosted runners are blocked on this account, so the workflow runs on the
+sandboxed self-hosted runner from `aabiro/xcelsior` (`scripts/ci-runner/`). A push
+queues the deploy job until a runner picks it up. Start one from the xcelsior
+checkout; it serves the one job and exits:
+
+```sh
+XCELSIOR_CI_REPO=aabiro/aabiro.github.io ./scripts/ci-runner/run-runner.sh
+```
+
+To redeploy without a push, run the workflow from the Actions tab (**Run
+workflow**), then start the runner the same way.
+
+The workflow has no `pull_request` trigger on purpose: on a public repository,
+that trigger would let anyone's pull request run code on the self-hosted runner.
 
 Check out the live site at:
 
