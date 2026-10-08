@@ -38,6 +38,8 @@ jobs:
           test -f site/favicon.png
           grep -q 'application/ld+json' site/index.html
           grep -q 'og:image' site/index.html
+          grep -q 'id="static-profile"' site/index.html
+          if grep -q 'Unpacking\.\.\.' site/index.html; then echo "index.html still serves the bare loader"; exit 1; fi
       - uses: actions/upload-pages-artifact@v3
         if: github.event_name != 'pull_request'
         with:

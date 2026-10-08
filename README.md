@@ -48,7 +48,17 @@ Dual-audience portfolio for humans and LLM agents (see `pxl-registry` S5 L6):
 | `llms.txt` | repo root → `site/llms.txt` | https://aabiro.github.io/llms.txt |
 | Agent manifest | `.well-known/agent.json` | https://aabiro.github.io/.well-known/agent.json |
 | JSON-LD | `scripts/inject_seo.py` | Person + CreativeWork `@graph` |
+| No-JavaScript copy | `scripts/inject_static_profile.py` | `<main id="static-profile">` in `index.html` |
 | Resume source | `RESUME.md` | built to `assets/Aaryn_Biro_Resume.pdf` in CI |
+
+The Claude Design export renders only with JavaScript, so on its own a crawler,
+link previewer, recruiter tool or agent fetching the page sees an empty loader.
+`scripts/inject_static_profile.py` reads the page's own copy and component data
+(experience, work, capabilities, stack, contact) out of the bundled template and
+writes it into `index.html` as plain HTML. Browsers with JavaScript still swap in
+the designed page as before. Re-exporting `page/page.html` keeps the static copy
+in sync automatically; the build fails if it can no longer find the experience
+or work data.
 
 `scripts/build_site.sh` copies agent files into `site/` alongside the HTML page.
 `scripts/build_resume_pdf.sh` regenerates the PDF from `RESUME.md` when pandoc is available.

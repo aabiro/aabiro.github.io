@@ -2,10 +2,10 @@
 # Assemble the static deploy directory (site/) that GitHub Pages serves.
 #
 # The page itself is the Claude Design export (page/page.html); this injects the
-# portfolio's SEO / agent <head> into it and gathers the supporting assets
-# (favicon, icons, manifest, robots, sitemap, OG image, llms.txt,
-# .well-known/agent.json, resume PDF) alongside it. The resume is expected to
-# already be built by scripts/build_resume_pdf.sh.
+# portfolio's SEO / agent <head> and a static copy of its content into it, and
+# gathers the supporting assets (favicon, icons, manifest, robots, sitemap, OG
+# image, llms.txt, .well-known/agent.json, resume PDF) alongside it. The resume
+# is expected to already be built by scripts/build_resume_pdf.sh.
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 SITE="$ROOT/site"
@@ -13,8 +13,11 @@ SITE="$ROOT/site"
 rm -rf "$SITE"
 mkdir -p "$SITE" "$SITE/.well-known" "$SITE/assets"
 
-# 1. The page, with SEO / agent metadata injected into its <head>.
+# 1. The page, with SEO / agent metadata injected into its <head>, plus a static
+#    copy of its content for crawlers, link previewers and agents that do not
+#    run JavaScript.
 python3 "$ROOT/scripts/inject_seo.py" "$ROOT/page/page.html" "$SITE/index.html"
+python3 "$ROOT/scripts/inject_static_profile.py" "$SITE/index.html"
 
 # 2. Favicon + PWA icons + manifest.
 cp "$ROOT/web/favicon.png" "$SITE/favicon.png"
