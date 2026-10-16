@@ -8,7 +8,7 @@
 # is expected to already be built by scripts/build_resume_pdf.sh.
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-SITE="$ROOT/site"
+SITE="${SITE_OUTPUT_DIR:-$ROOT/site}"
 
 rm -rf "$SITE"
 mkdir -p "$SITE" "$SITE/.well-known" "$SITE/assets"
@@ -40,4 +40,4 @@ cp "$ROOT/assets/Aaryn_Biro_Resume.pdf" "$SITE/assets/Aaryn_Biro_Resume.pdf"
 #    .well-known/ and any underscore-prefixed paths.
 touch "$SITE/.nojekyll"
 
-echo "-> built site/ (index.html + SEO assets + resume)"
+echo "-> built $SITE (index.html + SEO assets + resume)"

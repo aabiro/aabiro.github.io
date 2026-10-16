@@ -85,7 +85,7 @@ SEO_HEAD = """<title>Aaryn Biro - Principal Engineer &amp; Founder</title>
           "AI media pipelines",
           "FastAPI",
           "Next.js",
-          "Flutter",
+          "HTML",
           "Distributed systems"
         ]
       },
