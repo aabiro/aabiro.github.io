@@ -3,7 +3,8 @@
 Professional static HTML portfolio for Aaryn Biro.
 
 The live page source is `page/page.html`. `scripts/build_site.sh` injects SEO
-metadata and gathers the supporting assets into `site/` for deployment.
+metadata and gathers the supporting assets into a deploy directory - `site/` by
+default, or `docs/`, which is the copy GitHub Pages serves (see Deployment).
 
 ## Resume PDF
 
@@ -49,7 +50,7 @@ Dual-audience portfolio for humans and LLM agents (see `pxl-registry` S5 L6):
 | Agent manifest | `.well-known/agent.json` | https://aabiro.github.io/.well-known/agent.json |
 | JSON-LD | `scripts/inject_seo.py` | Person + CreativeWork `@graph` |
 | No-JavaScript copy | `scripts/inject_static_profile.py` | `<main id="static-profile">` in `index.html` |
-| Resume source | `RESUME.md` | built to `assets/Aaryn_Biro_Resume.pdf` in CI |
+| Resume source | `RESUME.md` | built to `assets/Aaryn_Biro_Resume.pdf` by `scripts/build_resume_pdf.sh` |
 
 The Claude Design export renders only with JavaScript, so on its own a crawler,
 link previewer, recruiter tool or agent fetching the page sees an empty loader.
@@ -67,19 +68,34 @@ Quarterly GitHub contribution stats: `.github/workflows/resume-quarterly.yml`.
 
 ## Deployment
 
-Deployment to GitHub Pages runs through GitHub Actions when changes are pushed to `main`.
+GitHub Pages serves the site from the committed `docs/` directory on `main`, so
+deploying is `git push`. Rebuild `docs/` whenever `page/`, `web/`, `llms.txt`,
+`.well-known/` or the resume PDF changes, and commit it alongside the change:
 
-GitHub-hosted runners are blocked on this account, so the workflow runs on the
-sandboxed self-hosted runner from `aabiro/xcelsior` (`scripts/ci-runner/`). A push
-queues the deploy job until a runner picks it up. Start one from the xcelsior
-checkout; it serves the one job and exits:
+```sh
+SITE_OUTPUT_DIR="$PWD/docs" bash scripts/build_site.sh
+```
+
+This used to deploy through Actions, with `actions/upload-pages-artifact` and
+`actions/deploy-pages`. That path is blocked: the upload needs Actions artifact
+storage, which this account's billing has cut off, so the job failed at the
+upload step with "Artifact storage quota has been hit" after an otherwise green
+build. Serving `docs/` from the branch needs no artifact storage and no hosted
+runner, and keeps the same URL.
+
+`.github/workflows/github-pages.yml` verifies rather than deploys: it rebuilds
+the site and fails if the committed `docs/` differs from a fresh build, which is
+the only thing that catches a stale `docs/`.
+
+GitHub-hosted runners are blocked on this account too, so that check runs on the
+sandboxed self-hosted runner from `aabiro/xcelsior` (`scripts/ci-runner/`). Start
+one from the xcelsior checkout; it serves the one job and exits:
 
 ```sh
 XCELSIOR_CI_REPO=aabiro/aabiro.github.io ./scripts/ci-runner/run-runner.sh
 ```
 
-To redeploy without a push, run the workflow from the Actions tab (**Run
-workflow**), then start the runner the same way.
+A push with no runner up just queues the check. The site is live either way.
 
 The workflow has no `pull_request` trigger on purpose: on a public repository,
 that trigger would let anyone's pull request run code on the self-hosted runner.
