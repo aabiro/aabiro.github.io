@@ -8,37 +8,35 @@ default, or `docs/`, which is the copy GitHub Pages serves (see Deployment).
 
 ## Resume PDF
 
-The downloadable resume served by the site is:
+The downloadable resume is built from a Word document, not from `RESUME.md`:
 
-`assets/Aaryn_Biro_Resume.pdf`
-
-Keep this as the single resume asset path. The download code serves it at
-`assets/Aaryn_Biro_Resume.pdf`.
-
-To preserve the SCRUFF resume layout, update the DOCX template first, then
-export it to PDF with LibreOffice. Do not recreate the PDF layout from scratch
-unless the DOCX template is unavailable.
-
-Current wording requirements:
-
-- Professional summary uses the Next.js/Python wording, not the old Ruby/Rails
-  summary.
-- Technical skills `Languages` starts with Python.
-- Technical skills `Backend` does not list Ruby on Rails.
-- Technical skills `Frontend & Mobile` starts with Next.js.
-- The Xcelsior first bullet includes `Next.js interfaces`.
-- Ruby/Rails should appear only in the realxdata experience bullet.
-
-Useful validation and preview commands:
+| File | Role |
+|------|------|
+| `assets/Aaryn_Biro_Resume.docx` | source of truth - design and text |
+| `assets/github_stats.json` | quarterly feed, refreshed by `scripts/fetch_github_stats.py` |
+| `assets/Aaryn_Biro_Resume.pdf` | what the site serves |
+| `assets/resume.lock.json` | hashes of the three above, written by the build |
 
 ```sh
-bash scripts/build_site.sh
-python3 -m http.server 8000 --directory site
+bash scripts/build_resume_pdf.sh
 ```
 
-The built site should contain the same PDF at:
+That resolves the `{{GITHUB_CONTRIBUTIONS}}` placeholder in the DOCX from the
+stats JSON, converts with LibreOffice, and rewrites the lock.
 
-`site/assets/Aaryn_Biro_Resume.pdf`
+**It runs locally, not in CI.** The PDF's line breaks depend on the fonts of the
+machine doing the conversion, so rebuilding it on a Linux runner would reflow the
+page. `scripts/check_resume_lock.py` runs in CI instead and fails when the DOCX
+or the stats JSON changed without a rebuild - including after the quarterly stats
+workflow commits, which is the signal to rebuild locally and commit the PDF.
+
+`RESUME.md` is a **separate, shorter document** for the web page and for agents.
+It is not the source of the PDF: it has a Selected projects section the PDF does
+not, and the PDF has Education, Certifications & Speaking and a phone number that
+`RESUME.md` does not. An earlier `build_resume_pdf.sh` ran
+`pandoc RESUME.md -o assets/Aaryn_Biro_Resume.pdf`, which would have replaced the
+designed one-page resume with a plain pandoc render the moment pandoc appeared on
+a runner.
 
 ## Agent-ready metadata (L6)
 
@@ -61,8 +59,8 @@ the designed page as before. Re-exporting `page/page.html` keeps the static copy
 in sync automatically; the build fails if it can no longer find the experience
 or work data.
 
-`scripts/build_site.sh` copies agent files into `site/` alongside the HTML page.
-`scripts/build_resume_pdf.sh` regenerates the PDF from `RESUME.md` when pandoc is available.
+`scripts/build_site.sh` copies agent files into the deploy directory alongside
+the HTML page.
 
 Quarterly GitHub contribution stats: `.github/workflows/resume-quarterly.yml`.
 

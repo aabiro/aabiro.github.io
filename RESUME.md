@@ -62,5 +62,7 @@ Founder and principal engineer building GPU compute platforms, Next.js interface
 - **pxl-registry** - Canonical ONNX/CoreML/TensorRT model registry with B2 cold-archive variants
 
 <!-- contribution-stats:start -->
-<!-- Updated quarterly by .github/workflows/resume-quarterly.yml -->
+**GitHub** (2026-10-27): 4653 contributions in the last year;
+6 public repositories.
+Top repos: aabiro.github.io (2★), xcelsior (2★), pxl-cam (1★), macpro-ai-tools (1★), aabiro (0★).
 <!-- contribution-stats:end -->
