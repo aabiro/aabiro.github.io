@@ -64,6 +64,8 @@ jobs:
           grep -q 'og:image' index.html
           grep -q 'id="static-profile"' index.html
           if grep -q 'Unpacking\.\.\.' index.html; then echo "index.html still serves the bare loader"; exit 1; fi
+      - name: Sitemap freshness date is current
+        run: python3 scripts/check_sitemap_lastmod.py
       - name: Resume PDF matches its DOCX source
         run: python3 scripts/check_resume_lock.py
       - name: Committed docs/ matches a fresh build

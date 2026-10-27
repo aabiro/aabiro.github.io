@@ -32,6 +32,7 @@ cp "$ROOT/web/og-image.jpg" "$SITE/og-image.jpg"
 # 4. Agent-readable assets.
 cp "$ROOT/llms.txt" "$SITE/llms.txt"
 cp "$ROOT/.well-known/agent.json" "$SITE/.well-known/agent.json"
+cp "$ROOT/assets/github_contributions.json" "$SITE/github-contributions.json"
 
 # 5. Downloadable resume (referenced by the page's download button).
 cp "$ROOT/assets/Aaryn_Biro_Resume.pdf" "$SITE/assets/Aaryn_Biro_Resume.pdf"
