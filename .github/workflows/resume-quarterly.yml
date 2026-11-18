@@ -11,29 +11,28 @@ permissions:
 
 jobs:
   stats:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, sandboxed]
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
       - name: Fetch GitHub contribution stats
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python3 scripts/fetch_github_stats.py
-      - name: Rebuild resume PDF
-        run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y -qq pandoc wkhtmltopdf || true
-          bash scripts/build_resume_pdf.sh
+      # The PDF is deliberately not rebuilt here. Its line breaks depend on the
+      # fonts of the machine that converts it, so rebuilding on the runner would
+      # reflow the page; and the step this replaces ran `apt-get install pandoc`
+      # followed by a build that would have overwritten the designed resume with
+      # a plain pandoc render of RESUME.md. scripts/check_resume_lock.py fails
+      # the next push instead, which is the signal to run
+      # scripts/build_resume_pdf.sh locally and commit the refreshed PDF.
       - name: Commit updated resume and stats
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add RESUME.md assets/github_stats.json assets/Aaryn_Biro_Resume.pdf || true
+          git add RESUME.md assets/github_stats.json || true
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "chore: quarterly GitHub stats and resume PDF refresh"
+            git commit -m "chore: quarterly GitHub contribution stats"
             git push
           fi

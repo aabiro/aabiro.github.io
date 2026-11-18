@@ -26,3 +26,6 @@ migrate_working_dir/
 
 # Local Firebase hosting cache
 .firebase/
+
+# Playwright MCP scratch output
+.playwright-mcp/

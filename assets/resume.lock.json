@@ -1,0 +1,6 @@
+{
+  "note": "Written by scripts/build_resume_pdf.sh. CI fails when these no longer match the committed files.",
+  "docx_sha256": "fe551df9c7c1761cb73c186f559d0d2599f9a76eb1b64d6860c27105a7eac007",
+  "stats_sha256": "ca7f56fe143e8c33a3c36abb3012c8a1358a0ff9b85b78e6af7c363cbdfdc29f",
+  "pdf_sha256": "fdd7dd0e81a169627821a6e156ea5235b5d3dd1bc78b8a9a868fd6c2c702744c"
+}

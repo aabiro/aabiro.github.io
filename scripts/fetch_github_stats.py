@@ -66,7 +66,9 @@ def main() -> int:
     block = "\n".join([
         f"**GitHub** ({stats['updated']}): {stats['total_contributions_last_year']} contributions in the last year;",
         f"{stats['public_repos']} public repositories.",
-        "Top repos: " + ", ".join(f"{r['name']} ({r['stars']}★)" for r in top[:5]) + ".",
+        "Top repos: " + ", ".join(
+            f"{r['name']} ({r['stargazerCount']}★)" for r in top[:5]
+        ) + ".",
     ])
 
     text = open(RESUME).read()
