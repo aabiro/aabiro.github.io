@@ -53,8 +53,8 @@ SEO_HEAD = """<title>Aaryn Biro - Principal Engineer &amp; Founder</title>
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="shortcut icon" href="favicon.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="favicon.png?v=fullsize-1">
+  <link rel="shortcut icon" href="favicon.png?v=fullsize-1">
 
   <link rel="manifest" href="manifest.json">
 
