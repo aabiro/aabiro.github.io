@@ -19,6 +19,7 @@ import sys
 
 MARKER = 'id="static-profile"'
 RESUME_HREF = "assets/Aaryn_Biro_Resume.pdf"
+YEAR_HREF = "year/"
 
 
 # --- JS literal parsing ------------------------------------------------------
@@ -277,6 +278,7 @@ def render(template: str) -> str:
     out.append(
         '<p class="sp-links">'
         f'<a href="{RESUME_HREF}">Download resume (PDF)</a> | '
+        f'<a href="{YEAR_HREF}">The year in review</a> | '
         f'<a href="mailto:{_e(links["email"])}">Email</a> | '
         f'<a href="{_e(links["linkedin"])}">LinkedIn</a> | '
         f'<a href="{_e(links["github"])}">GitHub</a>'

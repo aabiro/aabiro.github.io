@@ -36,8 +36,11 @@ cp "$ROOT/.well-known/agent.json" "$SITE/.well-known/agent.json"
 # 5. Downloadable resume (referenced by the page's download button).
 cp "$ROOT/assets/Aaryn_Biro_Resume.pdf" "$SITE/assets/Aaryn_Biro_Resume.pdf"
 
-# 6. GitHub Pages runs Jekyll by default; .nojekyll is required to serve
+# 6. The year in review: a standalone page served at /year/.
+cp -R "$ROOT/web/year" "$SITE/year"
+
+# 7. GitHub Pages runs Jekyll by default; .nojekyll is required to serve
 #    .well-known/ and any underscore-prefixed paths.
 touch "$SITE/.nojekyll"
 
-echo "-> built $SITE (index.html + SEO assets + resume)"
+echo "-> built $SITE (index.html + year/ + SEO assets + resume)"

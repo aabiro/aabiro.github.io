@@ -55,6 +55,7 @@ jobs:
           test -f site/.well-known/agent.json
           test -f site/assets/Aaryn_Biro_Resume.pdf
           test -f site/favicon.png
+          test -f site/year/index.html
           grep -q 'application/ld+json' site/index.html
           grep -q 'og:image' site/index.html
           grep -q 'id="static-profile"' site/index.html
