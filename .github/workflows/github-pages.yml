@@ -59,6 +59,7 @@ jobs:
           test -f .well-known/agent.json
           test -f assets/Aaryn_Biro_Resume.pdf
           test -f favicon.png
+          test -f year/index.html
           test -f .nojekyll
           grep -q 'application/ld+json' index.html
           grep -q 'og:image' index.html

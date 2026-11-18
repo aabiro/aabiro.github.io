@@ -92,6 +92,7 @@ cloud deployment
 - `GET /llms.txt` - this file (human + LLM context)
 - `GET /.well-known/agent.json` - structured portfolio manifest (projects, contact policy)
 - Resume: `/assets/Aaryn_Biro_Resume.pdf`
+- Year in review: `/year/` - a year of GitHub work (Nov 2025 to Nov 2026) in five illustrated chapters
 
 ## Structured data
 

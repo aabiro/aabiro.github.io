@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Shape of a Year · Aaryn Biro</title>
+<meta name="description" content="A year of building, in five chapters: 7,621 contributions, 43 repositories, and the GPU marketplace, private networks, AI video systems and agent tools behind them.">
+<link rel="canonical" href="https://aabiro.github.io/year/">
+<link rel="icon" href="../favicon.png">
+<meta name="theme-color" content="#0A1220">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Shape of a Year · Aaryn Biro">
+<meta property="og:description" content="7,621 contributions, 43 repositories, and the platforms behind them, from November 2025 to November 2026.">
+<meta property="og:url" content="https://aabiro.github.io/year/">
+<meta property="og:image" content="https://aabiro.github.io/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<style>
+:root {
+  color-scheme: light;
+  --navy: #0A1220;
+  --navy-line: #24324A;
+  --paper: #F7F5F0;
+  --hair: #D6D1C6;
+  --cyan: #3FD4F0;
+  --teal: #0A7C95;
+  --teal-deep: #075567;
+  --ink: #161A22;
+  --ink-2: #2A2F3A;
+  --muted: #5A6170;
+  --muted-dark: #8C9AB0;
+  --soft-dark: #A9B5C7;
+  --on-dark: #E8EDF4;
+  --white: #F4F7FB;
+  --gutter: clamp(16px, 5vw, 64px);
+  --display: 'Inter Tight', 'Inter', system-ui, sans-serif;
+  --body: 'Inter', system-ui, sans-serif;
+  --serif: 'Newsreader', Georgia, serif;
+  --mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.5; }
+a { color: var(--teal); text-underline-offset: 3px; }
+a:hover { color: var(--teal-deep); }
+.dark a { color: var(--cyan); }
+.dark a:hover { color: #8BE6F7; }
+h1, h2, h3, p { margin: 0; }
+
+.wrap { position: relative; max-width: 1120px; margin: 0 auto; padding: 0 var(--gutter); }
+section { position: relative; overflow: hidden; padding: clamp(56px, 9vw, 112px) 0; }
+.dark { background: var(--navy); color: var(--on-dark); }
+.light { background: var(--paper); }
+
+.numeral { position: absolute; right: var(--gutter); top: clamp(24px, 5vw, 56px); font-family: var(--display); font-weight: 800; font-size: clamp(120px, 22vw, 260px); line-height: 1; letter-spacing: -0.06em; color: #E9E5DB; pointer-events: none; user-select: none; }
+.dark .numeral { color: #111C2E; }
+
+.kicker { font-family: var(--mono); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--teal); }
+.dark .kicker { color: var(--cyan); }
+.headline { position: relative; margin-top: 10px; max-width: 14ch; font-family: var(--display); font-weight: 700; font-size: clamp(40px, 6.4vw, 72px); line-height: 0.98; letter-spacing: -0.035em; color: var(--navy); text-wrap: balance; }
+.dark .headline { color: var(--white); }
+.lede { position: relative; margin-top: 18px; max-width: 34em; font-family: var(--serif); font-style: italic; font-size: clamp(19px, 2.2vw, 23px); line-height: 1.32; color: var(--ink-2); text-wrap: pretty; }
+.dark .lede { color: var(--on-dark); }
+.mono { font-family: var(--mono); }
+.note { margin-top: 18px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em; color: var(--muted); }
+.dark .note { color: var(--muted-dark); }
+
+/* ---------- Masthead + hero ---------- */
+.masthead { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 20px 0 14px; border-bottom: 1px solid var(--navy-line); font-family: var(--mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted-dark); }
+.masthead a { color: var(--on-dark); text-decoration: none; font-weight: 600; }
+.masthead a:hover { color: var(--cyan); }
+.hero { padding-top: 0; }
+.hero-top { margin-top: clamp(36px, 6vw, 64px); display: flex; justify-content: space-between; align-items: flex-start; gap: 32px; }
+.hero h1 { font-family: var(--display); font-weight: 700; font-size: clamp(64px, 12.5vw, 150px); line-height: 0.88; letter-spacing: -0.045em; color: var(--white); }
+.hero h1 span { color: var(--cyan); }
+.topics { width: 210px; flex-shrink: 0; margin-top: 12px; padding-top: 10px; border-top: 2px solid var(--cyan); font-family: var(--mono); font-size: 12px; line-height: 1.7; letter-spacing: 0.06em; text-transform: uppercase; color: var(--soft-dark); }
+.hero .lede { margin-top: 28px; max-width: 30em; font-size: clamp(20px, 2.5vw, 26px); }
+
+.hero-stats { margin-top: clamp(40px, 6vw, 72px); display: grid; grid-template-columns: auto 1fr 1fr; gap: 16px 40px; align-items: end; }
+.big { font-family: var(--display); font-weight: 700; font-size: clamp(84px, 14vw, 168px); line-height: 0.85; letter-spacing: -0.05em; color: var(--white); }
+.big-cap { margin-top: 26px; max-width: 24em; font-size: 15px; line-height: 1.45; color: var(--soft-dark); }
+.callout { padding-top: 10px; border-top: 1px solid var(--navy-line); font-family: var(--mono); font-size: 12px; line-height: 1.55; color: var(--on-dark); }
+.callout b { display: block; margin-top: 2px; font-family: var(--display); font-size: 28px; line-height: 1.1; letter-spacing: -0.02em; font-weight: 700; color: var(--cyan); }
+
+.weeks { position: relative; margin-top: 36px; }
+.weeks svg { display: block; width: 100%; height: clamp(180px, 34vw, 360px); }
+.peak-tag { position: absolute; top: 0; right: calc(100% - 39 / 53 * 100% + 8px); font-family: var(--mono); font-size: 12px; line-height: 1.4; text-align: right; color: var(--on-dark); white-space: nowrap; }
+.peak-tag b { color: var(--cyan); font-weight: 600; }
+.months { margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--navy-line); display: grid; grid-template-columns: repeat(53, minmax(0, 1fr)); font-family: var(--mono); font-size: 12px; color: var(--muted-dark); white-space: nowrap; }
+
+/* ---------- Treemap ---------- */
+.treemap { margin-top: 40px; height: clamp(380px, 46vw, 500px); display: flex; gap: 3px; }
+.tm-main { flex: 5575 1 0; min-width: 0; display: flex; gap: 3px; }
+.tm-side { flex: 1848 1 0; min-width: 0; display: flex; flex-direction: column; gap: 3px; color: var(--navy); font-size: 13px; }
+.tile { min-width: 0; min-height: 0; padding: 18px 16px; display: flex; flex-direction: column; justify-content: space-between; color: var(--white); }
+.tile .pct { font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; }
+.tile h3 { margin-top: 6px; font-family: var(--display); font-weight: 700; font-size: clamp(18px, 2vw, 22px); line-height: 1.08; letter-spacing: -0.02em; }
+.tile p { margin-top: 6px; font-size: 13px; line-height: 1.4; }
+.tile .n { font-family: var(--display); font-weight: 700; font-size: clamp(40px, 5vw, 58px); line-height: 1; letter-spacing: -0.04em; }
+.t-meridian { flex: 2124 1 0; background: var(--navy); }
+.t-meridian .pct { color: var(--cyan); } .t-meridian p { color: var(--soft-dark); }
+.t-xcelsior { flex: 1826 1 0; background: var(--teal); }
+.t-xcelsior .pct { color: #D5F3FA; } .t-xcelsior p { color: #E3F6FA; }
+.t-pixel { flex: 1625 1 0; background: #7CC9DB; color: var(--navy); }
+.t-pixel p { color: #12303A; }
+.row { min-height: 0; padding: 0 12px; display: flex; justify-content: space-between; align-items: center; background: #CDE9EF; }
+.row .mono { font-size: 12px; }
+.row.lead { background: #B5DFE9; }
+.row.lead b { font-family: var(--display); font-size: 15px; }
+.rest { min-height: 0; padding: 12px; display: flex; flex-direction: column; justify-content: space-between; gap: 8px; background: #E4E0D6; }
+.rest-head { display: flex; justify-content: space-between; align-items: baseline; }
+.rest-head b { font-family: var(--display); font-size: 15px; }
+.squares { display: grid; grid-template-columns: repeat(7, 16px); gap: 4px; }
+.squares span { height: 16px; background: #B9B3A5; }
+
+.captions { margin-top: 32px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
+.captions div { padding-top: 12px; border-top: 3px solid var(--teal); }
+.captions div:nth-child(2) { border-color: #7CC9DB; }
+.captions div:nth-child(3) { border-color: #B5DFE9; }
+.captions h3 { font-family: var(--display); font-weight: 700; font-size: 21px; letter-spacing: -0.02em; color: var(--navy); }
+.captions p { margin-top: 6px; font-size: 15px; line-height: 1.55; color: var(--ink-2); text-wrap: pretty; }
+
+/* ---------- Xcelsior ---------- */
+.layers { margin-top: 44px; display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: clamp(28px, 5vw, 64px); align-items: center; }
+.layers svg { display: block; width: 100%; height: auto; max-width: 340px; }
+.layer { display: flex; gap: 16px; padding: 16px 0; border-top: 1px solid var(--navy-line); }
+.layer:last-child { border-bottom: 1px solid var(--navy-line); }
+.layer-n { flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; font-family: var(--mono); font-size: 13px; font-weight: 600; color: var(--white); }
+.layer h3 { font-family: var(--display); font-weight: 700; font-size: 19px; letter-spacing: -0.015em; color: var(--white); }
+.layer p { margin-top: 3px; font-size: 15px; line-height: 1.45; color: var(--soft-dark); }
+
+.xstats { margin-top: 48px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--navy-line); border-bottom: 1px solid var(--navy-line); }
+.xstats div { padding: 22px 20px 22px 0; }
+.xstats div + div { padding-left: 20px; border-left: 1px solid var(--navy-line); }
+.xstats b { display: block; font-family: var(--display); font-weight: 700; font-size: clamp(36px, 4.6vw, 52px); line-height: 1; letter-spacing: -0.04em; color: var(--white); }
+.xstats span { display: block; margin-top: 8px; font-size: 14px; line-height: 1.4; color: var(--soft-dark); }
+
+.path-title { margin-top: 48px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted-dark); }
+.path { margin: 16px 0 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0 16px; }
+.path li { position: relative; padding-top: 26px; }
+.path li::before { content: ""; position: absolute; left: 0; top: 0; width: 14px; height: 14px; border-radius: 50%; background: var(--cyan); }
+.path li:not(:last-child)::after { content: ""; position: absolute; left: 22px; right: -8px; top: 6px; height: 2px; background: var(--navy-line); }
+.path h3 { font-family: var(--display); font-weight: 700; font-size: 18px; color: var(--white); }
+.path p { margin-top: 4px; font-size: 14px; line-height: 1.45; color: var(--soft-dark); }
+
+/* ---------- Bench + data ---------- */
+.bench { padding: 0; }
+.bench-grid { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr); }
+.bench-main { padding: clamp(56px, 9vw, 112px) clamp(24px, 4vw, 56px) clamp(56px, 9vw, 112px) max(var(--gutter), calc((100vw - 1120px) / 2 + var(--gutter))); }
+.bench-data { padding: clamp(56px, 9vw, 112px) max(var(--gutter), calc((100vw - 1120px) / 2 + var(--gutter))) clamp(56px, 9vw, 112px) clamp(24px, 4vw, 48px); }
+.group-label { margin-top: 36px; padding-bottom: 8px; border-bottom: 1px solid var(--hair); font-family: var(--mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); }
+.projects { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 28px; }
+.projects div { padding-top: 14px; }
+.projects h3 { font-family: var(--display); font-weight: 700; font-size: 18px; letter-spacing: -0.015em; color: var(--navy); }
+.projects p { margin-top: 3px; font-size: 14.5px; line-height: 1.5; color: var(--ink-2); text-wrap: pretty; }
+.fact { padding: 20px 0; border-bottom: 1px solid var(--navy-line); }
+.fact:first-of-type { margin-top: 18px; border-top: 1px solid var(--navy-line); }
+.fact b { display: block; font-family: var(--display); font-weight: 700; font-size: clamp(44px, 5vw, 60px); line-height: 1; letter-spacing: -0.04em; color: var(--cyan); }
+.fact p { margin-top: 6px; font-size: 15px; line-height: 1.45; color: var(--on-dark); }
+
+/* ---------- Build log ---------- */
+.chart-head { margin-top: 44px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px 24px; }
+.chart-head h2 { font-family: var(--display); font-weight: 700; font-size: 20px; letter-spacing: -0.015em; color: var(--navy); }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13px; color: var(--muted); }
+.legend span::before { content: ""; display: inline-block; width: 10px; height: 10px; margin-right: 6px; border-radius: 50%; vertical-align: -1px; background: var(--teal); }
+.legend span.small::before { background: #B9B3A5; }
+.dots { margin-top: 24px; height: 200px; display: grid; grid-template-columns: repeat(20, minmax(0, 1fr)); align-items: end; border-bottom: 1px solid var(--hair); padding-bottom: 6px; }
+.dots .col { display: flex; flex-direction: column-reverse; align-items: center; gap: 5px; }
+.dots i { display: block; width: 13px; height: 13px; border-radius: 50%; background: #B9B3A5; }
+.dots i.major { background: var(--teal); }
+.dots i.newest { background: var(--navy); box-shadow: 0 0 0 3px var(--paper), 0 0 0 4px var(--navy); }
+.dots .lab { position: relative; height: 18px; width: 100%; }
+.dots .lab span { position: absolute; left: calc(50% - 7px); bottom: 2px; font-size: 12px; font-weight: 600; color: var(--navy); white-space: nowrap; }
+.axis { display: grid; grid-template-columns: repeat(20, minmax(0, 1fr)); margin-top: 6px; font-family: var(--mono); font-size: 12px; color: var(--muted); text-align: center; }
+.years { display: grid; grid-template-columns: 9fr 11fr; margin-top: 4px; font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.years span { padding-top: 4px; border-top: 1px solid var(--hair); }
+.years span + span { margin-left: 6px; }
+.milestones { display: none; }
+.log-caption { margin-top: 18px; max-width: 40em; font-family: var(--serif); font-size: 18px; line-height: 1.45; color: var(--ink-2); }
+
+.panels { margin-top: 52px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
+.panel { padding-top: 12px; border-top: 2px solid var(--navy); }
+.panel h3 { font-family: var(--display); font-weight: 700; font-size: 17px; color: var(--navy); }
+.ring { margin-top: 16px; display: flex; align-items: center; gap: 16px; font-size: 14.5px; line-height: 1.4; color: var(--ink-2); }
+.ring-fig { position: relative; width: 116px; height: 116px; flex-shrink: 0; }
+.ring-fig svg { display: block; transform: rotate(-90deg); }
+.ring-fig b { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--display); font-size: 28px; letter-spacing: -0.03em; color: var(--navy); }
+.langs { margin-top: 16px; display: grid; grid-template-columns: repeat(11, 1fr); gap: 4px; max-width: 280px; }
+.langs span { aspect-ratio: 1; }
+.panel .sub { margin-top: 10px; font-size: 13.5px; line-height: 1.45; color: var(--muted); }
+.panel .sub b { color: var(--ink); font-weight: 600; }
+.ai { margin-top: 14px; display: grid; gap: 10px; }
+.ai .lbl { display: flex; justify-content: space-between; font-size: 13.5px; color: var(--ink-2); }
+.ai .lbl span:last-child { font-family: var(--mono); font-size: 12px; }
+.ai .track { margin-top: 4px; height: 8px; background: #E4E0D6; }
+.ai .track div { height: 100%; background: var(--teal); }
+
+/* ---------- Close ---------- */
+.close { padding: clamp(56px, 8vw, 96px) 0 36px; }
+.close blockquote { margin: 0; max-width: 24em; font-family: var(--serif); font-style: italic; font-size: clamp(24px, 3.4vw, 36px); line-height: 1.25; color: var(--white); text-wrap: balance; }
+.links { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 12px 32px; font-family: var(--mono); font-size: 14px; }
+.foot { margin-top: 56px; padding-top: 14px; border-top: 1px solid var(--navy-line); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em; color: var(--muted-dark); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .hero-stats { grid-template-columns: 1fr 1fr; }
+  .hero-stats > :first-child { grid-column: 1 / -1; }
+  .layers { grid-template-columns: 1fr; }
+  .layers svg { max-width: 300px; margin: 0 auto; }
+  .xstats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .xstats div:nth-child(3) { padding-left: 0; border-left: 0; }
+  .xstats div:nth-child(n+3) { border-top: 1px solid var(--navy-line); }
+  .path { grid-template-columns: 1fr; gap: 0; }
+  .path li { padding: 0 0 18px 30px; }
+  .path li::before { top: 4px; }
+  .path li:not(:last-child)::after { left: 6px; right: auto; top: 22px; bottom: 0; width: 2px; height: auto; }
+  .bench-grid { grid-template-columns: 1fr; }
+  .bench-main, .bench-data { padding-left: var(--gutter); padding-right: var(--gutter); }
+  .panels { grid-template-columns: 1fr; gap: 36px; }
+  .dots .lab { display: none; }
+  .milestones { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 14px; font-size: 13.5px; color: var(--ink-2); }
+  .milestones span b { font-family: var(--mono); font-size: 12px; font-weight: 500; color: var(--teal); margin-right: 6px; }
+}
+@media (max-width: 680px) {
+  .masthead .mid { display: none; }
+  .hero-top { flex-direction: column; gap: 20px; }
+  .topics { width: auto; margin-top: 0; }
+  .callout b { font-size: 22px; }
+  .months .minor { visibility: hidden; }
+  .peak-tag { font-size: 11px; }
+  .treemap { flex-direction: column; height: auto; }
+  .tm-main { flex: none; height: 520px; flex-direction: column; }
+  .tm-side { flex: none; height: 320px; }
+  .tile { padding: 14px; flex-direction: row; align-items: flex-end; gap: 12px; }
+  .tile .n { font-size: 40px; }
+  .captions { grid-template-columns: 1fr; gap: 22px; }
+  .projects { grid-template-columns: 1fr; }
+  .dots { height: 180px; }
+  .dots i { width: 9px; height: 9px; }
+  .dots .col { gap: 4px; }
+  .axis { font-size: 10px; }
+  .numeral { display: none; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .weeks rect { transform-origin: bottom; transform-box: fill-box; animation: rise 0.9s cubic-bezier(.2,.7,.2,1) both; }
+  @keyframes rise { from { transform: scaleY(0); } }
+}
+</style>
+</head>
+<body>
+
+<!-- 1 · The shape of a year -->
+<section class="dark hero" aria-labelledby="h-year">
+  <div class="wrap">
+    <div class="masthead">
+      <a href="../">Aaryn Biro</a>
+      <span class="mid">The year in review</span>
+      <span>November 2026</span>
+    </div>
+    <div class="hero-top">
+      <h1 id="h-year">The shape<br>of a <span>year.</span></h1>
+      <div class="topics">Distributed GPU compute<br>Private networking<br>AI video systems<br>Agent tooling</div>
+    </div>
+    <p class="lede">Each bar below is one week of building, from November 2025 to November 2026. Read left to right, it is the record of four platforms taking form.</p>
+
+    <div class="hero-stats">
+      <div>
+        <div class="big">7,621</div>
+        <p class="big-cap">contributions recorded on GitHub in twelve months, on 230 of the 365 days.</p>
+      </div>
+      <div class="callout">First week of August<b>870 in 7 days</b></div>
+      <div class="callout">Consecutive days building<b>41, still running</b></div>
+    </div>
+
+    <div class="weeks">
+      <svg id="weeks" viewBox="0 0 689 380" preserveAspectRatio="none" role="img" aria-label="Weekly GitHub contributions from November 2025 to November 2026: modest through the winter and spring, climbing from June, peaking at 870 in the first week of August, and sustained above 400 a week from October onward."></svg>
+      <div class="peak-tag" aria-hidden="true">Aug peak · <b>870</b></div>
+    </div>
+    <div class="months" aria-hidden="true">
+      <span style="grid-column: 1 / span 3">Nov</span>
+      <span class="minor" style="grid-column: 4 / span 3">Dec</span>
+      <span class="minor" style="grid-column: 8 / span 4">Jan '26</span>
+      <span style="grid-column: 13 / span 3">Feb</span>
+      <span class="minor" style="grid-column: 17 / span 3">Mar</span>
+      <span class="minor" style="grid-column: 21 / span 3">Apr</span>
+      <span style="grid-column: 25 / span 3">May</span>
+      <span class="minor" style="grid-column: 30 / span 3">Jun</span>
+      <span class="minor" style="grid-column: 34 / span 3">Jul</span>
+      <span style="grid-column: 38 / span 3">Aug</span>
+      <span class="minor" style="grid-column: 43 / span 3">Sep</span>
+      <span class="minor" style="grid-column: 47 / span 3">Oct</span>
+      <span style="grid-column: 51 / span 3">Nov</span>
+    </div>
+  </div>
+</section>
+
+<!-- 2 · Where the work went -->
+<section class="light" aria-labelledby="h-where">
+  <div class="numeral" aria-hidden="true">02</div>
+  <div class="wrap">
+    <div class="kicker">Where the work went</div>
+    <h2 class="headline" id="h-where">Three projects carry three-quarters of it.</h2>
+    <p class="lede">Forty-three repositories, drawn to scale. Each block's area is its share of 7,423 commits.</p>
+
+    <div class="treemap" role="img" aria-label="Treemap of commits by repository: Meridian 2,124, Xcelsior 1,826, PixelEnhance Labs 1,625, PixelSpark 363, Ara 178, Phantom Trades 138, pxl-registry 133, Video Time Travel 124, and 35 smaller repositories with 912 between them.">
+      <div class="tm-main">
+        <div class="tile t-meridian">
+          <div><div class="pct">28.6%</div><h3>Meridian</h3><p>Early CRM product</p></div>
+          <div class="n">2,124</div>
+        </div>
+        <div class="tile t-xcelsior">
+          <div><div class="pct">24.6%</div><h3>Xcelsior</h3><p>A marketplace for GPU computing</p></div>
+          <div class="n">1,826</div>
+        </div>
+        <div class="tile t-pixel">
+          <div><div class="pct">21.9%</div><h3>PixelEnhance Labs</h3><p>AI video enhancement</p></div>
+          <div class="n">1,625</div>
+        </div>
+      </div>
+      <div class="tm-side">
+        <div class="row lead" style="flex: 363 1 0"><b>PixelSpark</b><span class="mono">363</span></div>
+        <div class="row" style="flex: 178 1 0"><span>Ara</span><span class="mono">178</span></div>
+        <div class="row" style="flex: 138 1 0"><span>Phantom Trades</span><span class="mono">138</span></div>
+        <div class="row" style="flex: 133 1 0"><span>pxl-registry</span><span class="mono">133</span></div>
+        <div class="row" style="flex: 124 1 0"><span>Video Time Travel</span><span class="mono">124</span></div>
+        <div class="rest" style="flex: 912 1 0">
+          <div class="rest-head"><b>35 more</b><span class="mono">912</span></div>
+          <div class="squares" id="squares"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="captions">
+      <div>
+        <h3>Xcelsior</h3>
+        <p>Turns idle graphics processors into rentable compute for AI. Every host is vetted before it takes work, and usage is metered by the second.</p>
+      </div>
+      <div>
+        <h3>PixelEnhance Labs</h3>
+        <p>Video enhancement as a service: self-hosted open-source models, a job queue that decides how much GPU power runs, and a quality gate.</p>
+      </div>
+      <div>
+        <h3>PixelSpark</h3>
+        <p>An AI video studio for Android and iPhone, backed by a C++ inference engine and one signed catalog of about 885 models.</p>
+      </div>
+    </div>
+    <p class="note">Commits on each main branch, including automation · Nov 14, 2026</p>
+  </div>
+</section>
+
+<!-- 3 · Inside Xcelsior -->
+<section class="dark" aria-labelledby="h-xcelsior">
+  <div class="numeral" aria-hidden="true">03</div>
+  <div class="wrap">
+    <div class="kicker">Anatomy of a platform</div>
+    <h2 class="headline" id="h-xcelsior">Inside Xcelsior.</h2>
+    <p class="lede">A GPU marketplace has to treat every machine as a stranger. Four layers stand between a rented computer and the job it runs.</p>
+
+    <div class="layers">
+      <svg viewBox="0 0 340 340" role="img" aria-label="Four concentric security layers around a job: version gating, least-privilege container, egress firewall, sandbox kernel.">
+        <circle cx="170" cy="170" r="154" fill="none" stroke="#14304A" stroke-width="28"/>
+        <circle cx="170" cy="170" r="121" fill="none" stroke="#18506B" stroke-width="28"/>
+        <circle cx="170" cy="170" r="88" fill="none" stroke="#1C7896" stroke-width="28"/>
+        <circle cx="170" cy="170" r="55" fill="none" stroke="#3FAAC5" stroke-width="28"/>
+        <circle cx="170" cy="170" r="30" fill="#F4F7FB"/>
+        <line x1="170" y1="2" x2="170" y2="140" stroke="#F4F7FB" stroke-width="1" stroke-dasharray="2 4"/>
+        <g font-family="'JetBrains Mono', monospace" font-size="13" font-weight="600" text-anchor="middle">
+          <text x="183" y="21" fill="#E8EDF4">1</text>
+          <text x="183" y="54" fill="#E8EDF4">2</text>
+          <text x="183" y="87" fill="#F4F7FB">3</text>
+          <text x="183" y="120" fill="#0A1220">4</text>
+          <text x="170" y="175" fill="#0A1220">JOB</text>
+        </g>
+      </svg>
+      <div>
+        <div class="layer"><span class="layer-n" style="background:#14304A">1</span><div><h3>Version gating</h3><p>Hosts with outdated drivers or runtimes never enter the pool.</p></div></div>
+        <div class="layer"><span class="layer-n" style="background:#18506B">2</span><div><h3>Least-privilege container</h3><p>The job gets only the rights it needs, and nothing of the host's.</p></div></div>
+        <div class="layer"><span class="layer-n" style="background:#1C7896">3</span><div><h3>Egress firewall</h3><p>Outbound traffic is restricted, so a job cannot roam the network.</p></div></div>
+        <div class="layer"><span class="layer-n" style="background:#3FAAC5;color:#0A1220">4</span><div><h3>Sandbox kernel</h3><p>gVisor or Kata puts a second wall between the job and the machine.</p></div></div>
+      </div>
+    </div>
+
+    <div class="xstats">
+      <div><b>89</b><span>operations an AI agent can run without a person</span></div>
+      <div><b>7,506</b><span>automated tests guarding the codebase</span></div>
+      <div><b>1,826</b><span>commits since the first, in February 2026</span></div>
+      <div><b>1 sec</b><span>the unit of billing, held against a prepaid wallet</span></div>
+    </div>
+
+    <div class="path-title">The path of one job</div>
+    <ol class="path">
+      <li><h3>Request</h3><p>A person or an AI agent asks for a GPU.</p></li>
+      <li><h3>Place</h3><p>A scheduler picks a vetted host on price and reputation.</p></li>
+      <li><h3>Isolate</h3><p>The job starts inside all four layers.</p></li>
+      <li><h3>Meter</h3><p>Usage is counted second by second.</p></li>
+      <li><h3>Settle</h3><p>The host is paid and the record is sealed.</p></li>
+    </ol>
+    <p class="note"><a href="https://xcelsior.ca">xcelsior.ca</a> · <a href="https://github.com/aabiro/xcelsior">github.com/aabiro/xcelsior</a></p>
+  </div>
+</section>
+
+<!-- 4 · The rest of the bench + what the data says -->
+<section class="bench" aria-labelledby="h-bench">
+  <div class="bench-grid">
+    <div class="bench-main light">
+      <div class="kicker">The rest of the bench</div>
+      <h2 class="headline" id="h-bench">Not everything is a platform.</h2>
+      <p class="lede">Ten smaller projects, each one an excuse to learn a system properly.</p>
+
+      <div class="group-label">Money, self-hosted</div>
+      <div class="projects">
+        <div><h3>Axiom Bitcoin</h3><p>A full Bitcoin node, a Lightning node and a BTCPay payment server, run on my own machines.</p></div>
+        <div><h3>Phantom Trades</h3><p>A Bitcoin trading bot on Kraken, with rules for when to take profit.</p></div>
+      </div>
+
+      <div class="group-label">Tools for AI agents</div>
+      <div class="projects">
+        <div><h3>Ara</h3><p>A coding agent that runs on local models, with its own bench for grading its work.</p></div>
+        <div><h3>Mac Pro AI Tools</h3><p>Eighteen tools that let an AI agent administer a vintage Mac Pro.</p></div>
+        <div><h3>agent-hub</h3><p>A lean browser-automation server: twelve tools an agent can drive.</p></div>
+        <div><h3>Xcelsior skill</h3><p>A packaged skill that teaches any agent to rent and run a GPU.</p></div>
+      </div>
+
+      <div class="group-label">Networks, cameras, robots</div>
+      <div class="projects">
+        <div><h3>Headmesh</h3><p>Private networks that let you lend one machine without lending the rest.</p></div>
+        <div><h3>Secrets vault</h3><p>One self-hosted vault feeding every project's credentials, with one-command rotation.</p></div>
+        <div><h3>pxl-cam</h3><p>Turns a spare Android phone into a low-latency studio camera for the Mac.</p></div>
+        <div><h3>pixeldrive</h3><p>My university robotics club's self-driving race car, rebuilt to learn from its camera.</p></div>
+      </div>
+      <p class="note">Ten of 43 repositories</p>
+    </div>
+
+    <aside class="bench-data dark" aria-labelledby="h-data">
+      <div class="kicker" id="h-data">What the data says</div>
+      <div class="fact"><b>56%</b><p>of the year's work landed in two months, August and October.</p></div>
+      <div class="fact"><b>33</b><p>contributions on an average active day.</p></div>
+      <div class="fact"><b>6.6</b><p>commits a day on Xcelsior, averaged since February.</p></div>
+      <div class="fact"><b>4 : 1</b><p>automated tests for every commit in Xcelsior.</p></div>
+      <div class="fact"><b>119</b><p>tools built for AI agents, across three servers.</p></div>
+      <div class="fact"><b>13</b><p>programming languages in use, from CUDA C++ to Swift.</p></div>
+    </aside>
+  </div>
+</section>
+
+<!-- 5 · The build log -->
+<section class="light" aria-labelledby="h-log">
+  <div class="numeral" aria-hidden="true">05</div>
+  <div class="wrap">
+    <div class="kicker">The build log</div>
+    <h2 class="headline" id="h-log">How it gets built.</h2>
+
+    <div class="chart-head">
+      <h2>Repositories started, month by month</h2>
+      <div class="legend"><span>major projects</span><span class="small">experiments and tools</span></div>
+    </div>
+    <div class="dots" id="dots" role="img" aria-label="Dot chart of 37 repositories by the month they were started, April 2025 to November 2026: nine in December 2025, six in October 2026, four each in September 2025 and February 2026. Major projects: Meridian in June 2025, PixelEnhance Labs in September 2025, Xcelsior in February 2026, pxl-registry in June 2026, pixeldrive in October 2026."></div>
+    <div class="axis" aria-hidden="true"><span>A</span><span>M</span><span>J</span><span>J</span><span>A</span><span>S</span><span>O</span><span>N</span><span>D</span><span>J</span><span>F</span><span>M</span><span>A</span><span>M</span><span>J</span><span>J</span><span>A</span><span>S</span><span>O</span><span>N</span></div>
+    <div class="years" aria-hidden="true"><span>2025</span><span>2026</span></div>
+    <div class="milestones" aria-hidden="true">
+      <span><b>Jun '25</b>Meridian</span>
+      <span><b>Sep '25</b>PixelEnhance Labs</span>
+      <span><b>Feb '26</b>Xcelsior</span>
+      <span><b>Jun '26</b>pxl-registry</span>
+      <span><b>Oct '26</b>pixeldrive</span>
+    </div>
+    <p class="log-caption">The newest, <b>pixeldrive</b>, rebuilds my university robotics club's self-driving race car, this time learning to drive from what its camera sees.</p>
+
+    <div class="panels">
+      <div class="panel">
+        <h3>Shipped through review</h3>
+        <div class="ring">
+          <div class="ring-fig">
+            <svg width="116" height="116" viewBox="0 0 116 116" aria-hidden="true">
+              <circle cx="58" cy="58" r="48" fill="none" stroke="#E4E0D6" stroke-width="14"/>
+              <circle cx="58" cy="58" r="48" fill="none" stroke="#0A7C95" stroke-width="14" stroke-dasharray="286.5 301.6"/>
+            </svg>
+            <b>95%</b>
+          </div>
+          <div>of <b>1,360</b> pull requests merged</div>
+        </div>
+      </div>
+      <div class="panel">
+        <h3>Written in</h3>
+        <div class="langs" id="langs" role="img" aria-label="43 repositories by main language: Python 18, TypeScript 6, JavaScript 3, Swift 3, Shell 2, seven other languages with one each, 4 unclassified."></div>
+        <p class="sub"><b>Python</b> 18 · <b>TypeScript</b> 6 · JavaScript 3 · Swift 3 · Shell 2 · seven more</p>
+      </div>
+      <div class="panel">
+        <h3>With AI in the loop</h3>
+        <div class="ai" role="img" aria-label="Of each project's latest 100 commits, the number co-authored with an AI model: Video Time Travel 94, PixelEnhance Labs 90, PixelSpark 80, Xcelsior 71.">
+          <div><div class="lbl"><span>Video Time Travel</span><span>94</span></div><div class="track"><div style="width:94%"></div></div></div>
+          <div><div class="lbl"><span>PixelEnhance Labs</span><span>90</span></div><div class="track"><div style="width:90%"></div></div></div>
+          <div><div class="lbl"><span>PixelSpark</span><span>80</span></div><div class="track"><div style="width:80%"></div></div></div>
+          <div><div class="lbl"><span>Xcelsior</span><span>71</span></div><div class="track"><div style="width:71%"></div></div></div>
+        </div>
+        <p class="sub">of each project's latest 100 commits, co-authored with an AI model</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Close -->
+<footer class="dark close">
+  <div class="wrap">
+    <blockquote>I want to build systems that are technically demanding, useful, and capable of becoming something much larger than their first implementation.</blockquote>
+    <div class="links">
+      <a href="../">aabiro.github.io</a>
+      <a href="https://github.com/aabiro">github.com/aabiro</a>
+      <a href="https://www.linkedin.com/in/aabiro/">linkedin.com/in/aabiro</a>
+      <a href="mailto:aaryn.biro@xcelsior.ca">aaryn.biro@xcelsior.ca</a>
+    </div>
+    <div class="foot">
+      <span>GitHub data as of November 14, 2026 · counts include automation</span>
+      <span>Aaryn Biro · The year in review</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var NS = 'http://www.w3.org/2000/svg';
+
+  // Weekly GitHub contributions, Sunday-first weeks, Nov 9 2025 to Nov 14 2026.
+  var weeks = [8,141,34,27,43,41,51,70,133,155,17,10,36,55,0,0,0,0,0,22,75,91,40,130,0,0,2,0,1,135,70,99,108,21,272,79,45,129,870,682,145,523,0,0,71,301,9,564,439,497,535,437,408];
+  var svg = document.getElementById('weeks');
+  weeks.forEach(function (n, i) {
+    var h = n === 0 ? 2 : Math.max(3, Math.round(n * 330 / 870));
+    var r = document.createElementNS(NS, 'rect');
+    r.setAttribute('x', i * 13);
+    r.setAttribute('y', 380 - h);
+    r.setAttribute('width', 10);
+    r.setAttribute('height', h);
+    r.setAttribute('fill', n === 0 ? '#24324A' : n >= 400 ? '#3FD4F0' : '#1F8FAD');
+    r.style.animationDelay = (i * 12) + 'ms';
+    svg.appendChild(r);
+  });
+
+  // 35 smaller repositories in the treemap.
+  var sq = document.getElementById('squares');
+  for (var s = 0; s < 35; s++) sq.appendChild(document.createElement('span'));
+
+  // Repositories started per month, Apr 2025 to Nov 2026: [count, major?, label].
+  var months = [[1,0],[0],[1,1,'Meridian'],[0],[0],[4,1,'PixelEnhance Labs'],[3,1],[0],[9,1,'nine in a month'],[0],[4,1,'Xcelsior'],[1,1],[1,0],[0],[3,1,'pxl-registry'],[3,0],[1,1],[0],[6,2,'pixeldrive'],[0]];
+  var dots = document.getElementById('dots');
+  months.forEach(function (m) {
+    var col = document.createElement('div');
+    col.className = 'col';
+    for (var k = 0; k < m[0]; k++) {
+      var d = document.createElement('i');
+      if (m[1] && k === m[0] - 1) d.className = m[1] === 2 ? 'newest' : 'major';
+      col.appendChild(d);
+    }
+    if (m[2]) {
+      var lab = document.createElement('div');
+      lab.className = 'lab';
+      lab.innerHTML = '<span></span>';
+      lab.firstChild.textContent = m[2];
+      col.appendChild(lab);
+    }
+    dots.appendChild(col);
+  });
+
+  // 43 repositories by main language.
+  var langs = [[18,'#0A1220'],[6,'#0A7C95'],[3,'#3FAAC5'],[3,'#86CEDF'],[2,'#5A6170'],[7,'#A7AEBA'],[4,'#E4E0D6']];
+  var lg = document.getElementById('langs');
+  langs.forEach(function (l) {
+    for (var k = 0; k < l[0]; k++) {
+      var c = document.createElement('span');
+      c.style.background = l[1];
+      lg.appendChild(c);
+    }
+  });
+})();
+</script>
+</body>
+</html>
